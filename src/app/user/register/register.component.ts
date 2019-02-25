@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 
-import { ForumService } from 'src/app/services/forum.service';
+import { ForumService } from '../../services/forum.service';
 
 @Component({
   selector: 'app-register',
