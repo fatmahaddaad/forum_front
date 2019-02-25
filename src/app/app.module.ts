@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { NotifierModule } from 'angular-notifier';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +32,7 @@ import { ForumComponent } from './user/forum/forum.component';
     FormsModule,
     HttpClientModule,
     HttpModule,
+    NotifierModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
