@@ -23,4 +23,14 @@ export class ForumService {
     this.createAuthorizationHeader(headers);
     return this.http.post(this.Url+`login_check`, user, {headers});
   }
+  getTopics() {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.Url+"topics", {headers});
+  }
+  getRepliesCount(id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.Url+`countReplies/${id}`, {headers});
+  }
 }

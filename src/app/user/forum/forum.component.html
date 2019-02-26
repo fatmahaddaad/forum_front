@@ -1,3 +1,24 @@
-<p>
-  forum works!
-</p>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+      <th>Topic</th>
+      <th>Date</th>
+      <th>views</th>
+      <th>replies</th>
+      <th>status</th>
+      <th>category</th>
+      <th>user</th>
+  </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let topic of topics">
+          <td><button class="btn btn-link" title="{{ topic.subject }}" (click)="show(topic.id)">{{ topic.subject }}</button></td>
+          <td>{{ topic.date }}</td>
+          <td>{{ topic.views }}</td>
+          <td>{{ topic.replies.length }}</td>
+          <td>{{ topic.status }}</td>
+          <td>{{ topic.category.name }}</td>
+          <td>{{ topic.user.username }}</td>
+      </tr>
+  </tbody>
+</table>
