@@ -14,6 +14,8 @@ import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ForumComponent } from './user/forum/forum.component';
+import { QuestionComponent } from './user/forum/question/question.component';
+import { AskComponent } from './user/forum/ask/ask.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ForumComponent } from './user/forum/forum.component';
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    ForumComponent
+    ForumComponent,
+    QuestionComponent,
+    AskComponent
   ],
   imports: [
     BrowserModule,
