@@ -1,3 +1,37 @@
-<p>
-  question works!
-</p>
+<div *ngIf="topic && replies">
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Topic</th>
+        <th>Content</th>
+        <th>Date</th>
+        <th>views</th>
+        <th>replies</th>
+        <th>status</th>
+        <th>category</th>
+        <th>user</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ topic.subject }}</td>
+            <td>{{ topic.content }}</td>
+            <td>{{ topic.date }}</td>
+            <td>{{ topic.views }}</td>
+            <td>{{ topic.replies.length }}</td>
+            <td>{{ topic.status }}</td>
+            <td>{{ topic.category.name }}</td>
+            <td>{{ topic.user.username }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul *ngFor="let reply of replies">
+      <li style="color: red">{{ reply.id }} -- {{ reply.content }} -- {{ reply.date }} -- is correct : {{ reply.is_correct }} -- user : {{ reply.user.username }}
+        <ul>
+          <li style="margin-left: 20px; color: blue" *ngFor="let comment of reply.comments">
+            {{ comment.id }} -- {{ comment.content }} -- {{ comment.date }} -- user : {{ comment.user.username }}
+          </li>
+        </ul>
+      </li>
+    </ul>
+</div>

@@ -33,4 +33,19 @@ export class ForumService {
     this.createAuthorizationHeader(headers);
     return this.http.get(this.Url+`countReplies/${id}`, {headers});
   }
+  getTopic(id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.Url+`topic/${id}`, {headers});
+  }
+  getRepliesByTopic(id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.Url+`repliesByTopic/${id}`, {headers});
+  }
+  getCommentsByReply(id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.Url+`commentsByReply/${id}`, {headers});
+  }
 }
