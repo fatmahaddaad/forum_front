@@ -7,12 +7,14 @@ import { registerContentQuery } from '@angular/core/src/render3';
 import { RegisterComponent } from './user/register/register.component';
 import { ForumComponent } from './user/forum/forum.component';
 import { QuestionComponent } from './user/forum/question/question.component';
+import { AskComponent } from './user/forum/ask/ask.component';
 
 const routes: Routes = [
   { path: 'login' , component: LoginComponent}, 
   { path: 'register', component: RegisterComponent},
   { path: 'forum', component: ForumComponent},
   { path: 'question/:id', component: QuestionComponent, canActivate: [AuthGuard]},
+  { path: 'ask-question', component: AskComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

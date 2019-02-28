@@ -48,4 +48,18 @@ export class ForumService {
     this.createAuthorizationHeader(headers);
     return this.http.get(this.Url+`commentsByReply/${id}`, {headers});
   }
+  getCategories() {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.Url+`categories`, {headers});
+  }
+  addTopic(topic) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    const formData: FormData = new FormData();
+    formData.append('subject', topic.subject);
+    formData.append('content', topic.content);
+    formData.append('category_id', topic.category_id);
+    return this.http.post(this.Url+"addTopic", formData, {headers});
+  }
 }
