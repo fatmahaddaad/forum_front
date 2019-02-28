@@ -18,10 +18,12 @@ export class QuestionComponent implements OnInit {
     let id = this.route.snapshot.paramMap.get('id');
     this.forumService.getTopic(id).subscribe(file => {
       this.topic = file.json();
-    });
-    this.forumService.getRepliesByTopic(id).subscribe(file => {
-      this.replies = file.json();
-      console.log(this.replies);
+      if (this.topic.replies.length != 0) {
+        this.forumService.getRepliesByTopic(id).subscribe(file => {
+          this.replies = file.json();
+          console.log(this.replies);
+        });
+      }
     });
   }
 
