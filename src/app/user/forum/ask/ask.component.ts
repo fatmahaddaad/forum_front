@@ -36,9 +36,7 @@ export class AskComponent implements OnInit {
     this.forumService.addTopic(topic).subscribe(res =>
     {
     this.notifier.notify( 'success', 'question added successfully' );
-    // this.router.navigate([`/forum/`]);
-    console.log("res "+res);
-    
+    this.router.navigate([`/question/${res.json().id}`]);
     }, (err) => {
       console.log("err "+err);
       this.notifier.notify( 'error', 'An error occurred while adding a new question: ' + err.statusText );
