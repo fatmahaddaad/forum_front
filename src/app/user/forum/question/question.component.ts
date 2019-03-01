@@ -12,9 +12,12 @@ export class QuestionComponent implements OnInit {
   private readonly notifier: NotifierService;
   topic: any;
   replies: any;
+  votes: any;
   content: string;
   comment_content: any[] = [];
   MyClass: boolean[] = [];
+  countVote: any[] = [];
+  j : number = 0;
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
     private router: Router,
@@ -34,7 +37,18 @@ export class QuestionComponent implements OnInit {
           console.log(this.replies);
           this.replies.forEach(element => {
             this.MyClass[element.id]= true;
+            this.forumService.getcountVotes(element.id).subscribe(file => { 
+              this.votes = file.json();
+              this.countVote[element.id] = this.votes;
+              console.log(this.countVote[element.id]);
+              this.j = this.j + 1;
+            }, (err) => {
+              this.countVote[element.id] = 0;
+              this.j = this.j + 1;
+            });
           });
+          console.log(this.replies.length, this.j);
+          
         });
       }
     });

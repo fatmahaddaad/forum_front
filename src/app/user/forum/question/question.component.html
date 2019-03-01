@@ -25,8 +25,8 @@
         </tr>
       </tbody>
     </table>
-    <ul *ngFor="let reply of replies;let index = index;">
-      <li style="color: red">{{ reply.id }} -- {{ reply.content }} -- {{ reply.date }} -- is correct : {{ reply.is_correct }} -- user : {{ reply.user.username }}
+    <ul *ngFor="let reply of replies;let index = index;" >
+      <li *ngIf="replies.length == j" style="color: red">{{ reply.id }} -- {{ reply.content }} -- {{ reply.date }} -- is correct : {{ reply.is_correct }} -- user : {{ reply.user.username }} -- {{countVote[reply.id]}}
         <ul>
           <li style="margin-left: 20px; color: blue" *ngFor="let comment of reply.comments">
             {{ comment.id }} -- {{ comment.content }} -- {{ comment.date }} -- user : {{ comment.user.username }}

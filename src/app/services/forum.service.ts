@@ -78,4 +78,9 @@ export class ForumService {
     formData.append('reply_id', comment.reply_id);
     return this.http.post(this.Url+"addComment", formData, {headers});
   }
+  getcountVotes(reply_id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.Url+`countVotes/${reply_id}`, {headers});
+  }
 }
