@@ -21,7 +21,7 @@
                                         <img class="avatar avatar-48 photo" *ngIf="!topic.user.image" style="width: 54px; height: 54px; object-fit: cover;" alt="authors" src="http://127.0.0.1:8000/images/profile/author2.png" />
                                         {{topic.user.username}}
                                     </a>
-                                    asked on {{ topic.date }}
+                                    asked {{ date }}
                                 </span>
                                 <span class="dwqa-question-actions"></span>
                             </div>
@@ -35,7 +35,7 @@
                         <!-- End Questions Ityem -->
                         <!-- Start Answer item -->
                         <div class="dwqa-answers">
-                            <div class="dwqa-answers-title"><span>{{ topic.replies.length }} Answers</span></div>
+                            <div class="dwqa-answers-title"><span>{{ replies.length }} Answers</span></div>
                             <div class="dwqa-answers-list">
                                 <div *ngFor="let reply of replies;let index = index;" class="dwqa-answer-item dwqa-best-answer" id="answer-{{ reply.id }}">
                                     <div class="dwqa-answer-vote">
@@ -51,7 +51,7 @@
                                                 <img *ngIf="!reply.user.image" style="width: 54px; height: 54px; object-fit: cover;" alt="authors" src="http://127.0.0.1:8000/images/profile/author2.png" />
                                                {{reply.user.username}}
                                             </a>
-                                            answered on {{ reply.date }}
+                                            answered {{ replyDate[reply.id] }}
                                         </span> 
                                         <span class="dwqa-answer-actions"></span>
                                     </div>
@@ -67,7 +67,7 @@
                                                         <img class="avatar avatar-16 photo" *ngIf="!comment.user.image" style="width: 12px; height: 12px; object-fit: cover;" alt="authors" src="http://127.0.0.1:8000/images/profile/author2.png" />
                                                         {{ comment.user.username }}
                                                     </a>
-                                                    replied on {{ comment.date }}
+                                                    replied {{commentDate[comment.id]}}
                                                     <div class="dwqa-comment-actions"></div>
                                                 </div>
                                                 <p>{{ comment.content }}</p>

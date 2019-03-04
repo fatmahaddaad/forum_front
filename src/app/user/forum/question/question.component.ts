@@ -1,6 +1,7 @@
 import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
+import * as moment from 'moment';
 import { ForumService } from '../../../services/forum.service';
 
 @Component({
@@ -19,6 +20,9 @@ export class QuestionComponent implements OnInit {
   countVote: any[] = [];
   scores: any;
   j : number = 0;
+  date : any;
+  replyDate : any[] = [];
+  commentDate : any[] = [];
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
     private router: Router,
@@ -32,11 +36,16 @@ export class QuestionComponent implements OnInit {
     let id = this.route.snapshot.paramMap.get('id');
     this.forumService.getRepliesByTopic(id).subscribe(file => {
       this.topic = file.json().topic;
+      this.date = moment(this.topic.date, "YYYYMMDDTh:mm:ss").fromNow()
       this.replies = file.json().replies;
       this.scores = file.json().scores;
       if (this.replies != 0) {
           this.replies.forEach(element => {
             this.MyClass[element.id]= true;
+            this.replyDate[element.id] = moment(element.date, "YYYYMMDDTh:mm:ss").fromNow();
+            element.comments.forEach(comment => {
+              this.commentDate[comment.id] = moment(comment.date, "YYYYMMDDTh:mm:ss").fromNow();
+            });
             this.scores.forEach(score => {
               if (element.id == score.reply) {
                 this.countVote[element.id] = score.score;
@@ -59,11 +68,16 @@ export class QuestionComponent implements OnInit {
       this.notifier.notify( 'success', 'reply added successfully' );
       this.forumService.getRepliesByTopic(id).subscribe(file => {
         this.topic = file.json().topic;
+        this.date = moment(this.topic.date, "YYYYMMDDTh:mm:ss").fromNow()
         this.replies = file.json().replies;
         this.scores = file.json().scores;
         if (this.replies != 0) {
             this.replies.forEach(element => {
               this.MyClass[element.id]= true;
+              this.replyDate[element.id] = moment(element.date, "YYYYMMDDTh:mm:ss").fromNow();
+              element.comments.forEach(comment => {
+                this.commentDate[comment.id] = moment(comment.date, "YYYYMMDDTh:mm:ss").fromNow();
+              });
               this.scores.forEach(score => {
                 if (element.id == score.reply) {
                   this.countVote[element.id] = score.score;
@@ -91,11 +105,16 @@ export class QuestionComponent implements OnInit {
       this.notifier.notify( 'success', 'comment added successfully' );
       this.forumService.getRepliesByTopic(id).subscribe(file => {
         this.topic = file.json().topic;
+        this.date = moment(this.topic.date, "YYYYMMDDTh:mm:ss").fromNow()
         this.replies = file.json().replies;
         this.scores = file.json().scores;
         if (this.replies != 0) {
             this.replies.forEach(element => {
               this.MyClass[element.id]= true;
+              this.replyDate[element.id] = moment(element.date, "YYYYMMDDTh:mm:ss").fromNow();
+              element.comments.forEach(comment => {
+                this.commentDate[comment.id] = moment(comment.date, "YYYYMMDDTh:mm:ss").fromNow();
+              });
               this.scores.forEach(score => {
                 if (element.id == score.reply) {
                   this.countVote[element.id] = score.score;
