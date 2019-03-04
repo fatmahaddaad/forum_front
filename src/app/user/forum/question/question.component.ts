@@ -17,6 +17,7 @@ export class QuestionComponent implements OnInit {
   comment_content: any[] = [];
   MyClass: boolean[] = [];
   countVote: any[] = [];
+  scores: any;
   j : number = 0;
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
@@ -29,27 +30,20 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
-    this.forumService.getTopic(id).subscribe(file => {
-      this.topic = file.json();
-      if (this.topic.replies.length != 0) {
-        this.forumService.getRepliesByTopic(id).subscribe(file => {
-          this.replies = file.json();
-          console.log(this.replies);
+    this.forumService.getRepliesByTopic(id).subscribe(file => {
+      this.topic = file.json().topic;
+      this.replies = file.json().replies;
+      this.scores = file.json().scores;
+      if (this.replies != 0) {
           this.replies.forEach(element => {
             this.MyClass[element.id]= true;
-            this.forumService.getcountVotes(element.id).subscribe(file => { 
-              this.votes = file.json();
-              this.countVote[element.id] = this.votes;
-              console.log(this.countVote[element.id]);
-              this.j = this.j + 1;
-            }, (err) => {
-              this.countVote[element.id] = 0;
-              this.j = this.j + 1;
-            });
+            this.scores.forEach(score => {
+              if (element.id == score.reply) {
+                this.countVote[element.id] = score.score;
+              }
+            })
+            this.j = this.j + 1;
           });
-          console.log(this.replies.length, this.j);
-          
-        });
       }
     });
   }
@@ -64,7 +58,20 @@ export class QuestionComponent implements OnInit {
       {
       this.notifier.notify( 'success', 'reply added successfully' );
       this.forumService.getRepliesByTopic(id).subscribe(file => {
-        this.replies = file.json();
+        this.topic = file.json().topic;
+        this.replies = file.json().replies;
+        this.scores = file.json().scores;
+        if (this.replies != 0) {
+            this.replies.forEach(element => {
+              this.MyClass[element.id]= true;
+              this.scores.forEach(score => {
+                if (element.id == score.reply) {
+                  this.countVote[element.id] = score.score;
+                }
+              })
+              this.j = this.j + 1;
+            });
+        }
       });
       this.content = null;
       }, (err) => {
@@ -83,7 +90,20 @@ export class QuestionComponent implements OnInit {
       {
       this.notifier.notify( 'success', 'comment added successfully' );
       this.forumService.getRepliesByTopic(id).subscribe(file => {
-        this.replies = file.json();
+        this.topic = file.json().topic;
+        this.replies = file.json().replies;
+        this.scores = file.json().scores;
+        if (this.replies != 0) {
+            this.replies.forEach(element => {
+              this.MyClass[element.id]= true;
+              this.scores.forEach(score => {
+                if (element.id == score.reply) {
+                  this.countVote[element.id] = score.score;
+                }
+              })
+              this.j = this.j + 1;
+            });
+        }
       });
       this.comment_content[i] = null;
       }, (err) => {

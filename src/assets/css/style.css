@@ -1784,7 +1784,7 @@ span.comment-date {
     line-height: 24px;
 }
 .comment-text > p {
-    color: ;
+    color: #666666;
     font-size: 15px;
     line-height: 24px;
     margin-bottom: 0;
@@ -2245,7 +2245,7 @@ a.comment-reply:hover {
 }
 .dwqa-answer-item {
     border-top: 1px solid #ddd;
-    min-height: 220px;
+    min-height: 250px;
     padding: 20px 0 20px 90px;
     position: relative;
 }

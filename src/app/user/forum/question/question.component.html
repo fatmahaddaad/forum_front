@@ -1,57 +1,134 @@
-<div *ngIf="topic">
-  <table class="table table-bordered">
-    <thead>
-    <tr>
-        <th>Topic</th>
-        <th>Content</th>
-        <th>Date</th>
-        <th>views</th>
-        <th>replies</th>
-        <th>status</th>
-        <th>category</th>
-        <th>user</th>
-    </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{ topic.subject }}</td>
-            <td>{{ topic.content }}</td>
-            <td>{{ topic.date }}</td>
-            <td>{{ topic.views }}</td>
-            <td>{{ topic.replies.length }}</td>
-            <td>{{ topic.status }}</td>
-            <td>{{ topic.category.name }}</td>
-            <td>{{ topic.user.username }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <ul *ngFor="let reply of replies;let index = index;" >
-      <li *ngIf="replies.length == j" style="color: red">{{ reply.id }} -- {{ reply.content }} -- {{ reply.date }} -- is correct : {{ reply.is_correct }} -- user : {{ reply.user.username }} -- {{countVote[reply.id]}}
-        <ul>
-          <li style="margin-left: 20px; color: blue" *ngFor="let comment of reply.comments">
-            {{ comment.id }} -- {{ comment.content }} -- {{ comment.date }} -- user : {{ comment.user.username }}
-          </li>
-        </ul>
-        <a (click)="commentFormToggle(reply.id)">add a comment</a>
-        <form [ngClass]="{hidden : MyClass[reply.id]}" id="comment_form_{{reply.id}}" method="POST" (submit)="onAddComment(reply.id, index)" >
-          <div class="form-group">
-              <label for="comment_content">Comment Details</label>
-              <textarea class="form-control" name="comment_content{{index}}" [(ngModel)]="comment_content[index]"></textarea>
-          </div>
-          <div>
-              <input type="submit" value="submit" class="btn btn-default" />
-          </div>
-        </form>
-      </li>
-    </ul>
-    <form method="POST" (submit)="onAddReply()" >
-      <div class="form-group">
-          <label for="content">Reply Details</label>
-          <textarea class="form-control" name="content" [(ngModel)]="content"></textarea>
-      </div>
-      <div>
-          <input type="submit" value="submit" class="btn btn-default" />
-      </div>
-    </form>
-    <notifier-container></notifier-container>
+<!-- Start Answers Area -->
+<div class="answers-area themeix-ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9" *ngIf="topic">
+                <div class="answers-wrapper">
+                    <div class="dwqa-single-question">
+                        <div class="dwqa-breadcrumbs">
+                            <a href="#">Questions</a>
+                            <span class="dwqa-sep"> › </span>
+                            <a href="#">Category : {{ topic.category.name }}</a>
+                            <span class="dwqa-sep"> › </span>
+                            <span class="dwqa-current">{{ topic.subject }}</span>
+                        </div>
+                        <!-- Start Question Item -->
+                        <div class="dwqa-question-item">
+                            <div class="dwqa-question-meta">
+                                <span>
+                                    <a href="#">
+                                        <img class="avatar avatar-48 photo" *ngIf="topic.user.image" style="width: 54px; height: 54px; object-fit: cover;" alt="authors" src="http://127.0.0.1:8000/images/profile/{{ topic.user.image }}" />
+                                        <img class="avatar avatar-48 photo" *ngIf="!topic.user.image" style="width: 54px; height: 54px; object-fit: cover;" alt="authors" src="http://127.0.0.1:8000/images/profile/author2.png" />
+                                        {{topic.user.username}}
+                                    </a>
+                                    asked on {{ topic.date }}
+                                </span>
+                                <span class="dwqa-question-actions"></span>
+                            </div>
+                            <div class="dwqa-question-content">
+                                <p>{{ topic.content }}</p>
+                            </div>
+                            <footer class="dwqa-question-footer">
+                                <div class="dwqa-question-meta"></div>
+                            </footer>
+                        </div>
+                        <!-- End Questions Ityem -->
+                        <!-- Start Answer item -->
+                        <div class="dwqa-answers">
+                            <div class="dwqa-answers-title"><span>{{ topic.replies.length }} Answers</span></div>
+                            <div class="dwqa-answers-list">
+                                <div *ngFor="let reply of replies;let index = index;" class="dwqa-answer-item dwqa-best-answer" id="answer-{{ reply.id }}">
+                                    <div class="dwqa-answer-vote">
+                                        <span class="dwqa-vote-count">{{countVote[reply.id]}}</span>
+                                        <a class="dwqa-vote dwqa-vote-up" href="#">Vote Up</a>
+                                        <a class="dwqa-vote dwqa-vote-down" href="#">Vote Down</a>
+                                    </div>
+                                    <span *ngIf="reply.is_correct" class="dwqa-pick-best-answer">Best Answer</span>
+                                    <div class="dwqa-answer-meta">
+                                        <span>
+                                            <a href="#">
+                                                <img *ngIf="reply.user.image" style="width: 54px; height: 54px; object-fit: cover;" alt="authors" src="http://127.0.0.1:8000/images/profile/{{ reply.user.image }}" />
+                                                <img *ngIf="!reply.user.image" style="width: 54px; height: 54px; object-fit: cover;" alt="authors" src="http://127.0.0.1:8000/images/profile/author2.png" />
+                                               {{reply.user.username}}
+                                            </a>
+                                            answered on {{ reply.date }}
+                                        </span> 
+                                        <span class="dwqa-answer-actions"></span>
+                                    </div>
+                                    <div class="dwqa-answer-content">
+                                        <p>{{ reply.content }}</p>
+                                    </div>
+                                    <div class="dwqa-comments">
+                                        <div class="dwqa-comments-list">
+                                            <div class="dwqa-comment {{ comment.id }}" *ngFor="let comment of reply.comments">
+                                                <div class="dwqa-comment-meta">
+                                                    <a href="#">
+                                                        <img class="avatar avatar-16 photo" *ngIf="comment.user.image" style="width: 12px; height: 12px; object-fit: cover;" alt="authors" src="http://127.0.0.1:8000/images/profile/{{ comment.user.image }}" />
+                                                        <img class="avatar avatar-16 photo" *ngIf="!comment.user.image" style="width: 12px; height: 12px; object-fit: cover;" alt="authors" src="http://127.0.0.1:8000/images/profile/author2.png" />
+                                                        {{ comment.user.username }}
+                                                    </a>
+                                                    replied on {{ comment.date }}
+                                                    <div class="dwqa-comment-actions"></div>
+                                                </div>
+                                                <p>{{ comment.content }}</p>
+                                            </div>
+                                            <!-- #comment-## -->
+                                            <a (click)="commentFormToggle(reply.id)">add a comment</a>
+                                            <form [ngClass]="{hidden : MyClass[reply.id]}" id="comment_form_{{reply.id}}" method="POST" (submit)="onAddComment(reply.id, index)" >
+                                                <div class="form-group">
+                                                    <label for="comment_content">Comment Details</label>
+                                                    <textarea class="form-control" name="comment_content{{index}}" [(ngModel)]="comment_content[index]"></textarea>
+                                                </div>
+                                                <div>
+                                                    <input type="submit" value="submit" class="btn btn-default" />
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Answer item -->
+                            </div>
+                            <form method="POST" (submit)="onAddReply()" >
+                                <div class="form-group">
+                                    <label for="content">Reply Details</label>
+                                    <textarea class="form-control" name="content" [(ngModel)]="content"></textarea>
+                                </div>
+                                <div>
+                                    <input type="submit" value="submit" class="btn btn-default" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Start Blog Sidebar -->
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="blog-sidebar">
+                        <div class="col-md-12 col-sm-6">
+                            <aside id="dwqa-categories-2" class="widget widget_categories dwqa_widget dwqa_widget_categories sidebar-list">
+                                <h2 class="widget-title">Topics Categories</h2>
+                                <ul>
+                                    <li><a href="#"></a></li>
+                                </ul>
+                            </aside>
+                        </div>
+                        <div class="col-md-12 col-sm-6">
+                            <aside class="widget dwqa-widget dwqa-popular-question">
+                                <div class="sidebar-popular-post dwqa-popular-questions">
+                                    <h2 class="widget-title">Popular Questions</h2>
+                                    <ul>
+                                        <li><a href="#"></a></li>
+                                    </ul>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Blog Sidebar -->
+        </div>
+    </div>
 </div>
+<!-- End Answers Area -->
+<notifier-container></notifier-container>
