@@ -9,39 +9,39 @@
                     <div class="dwqa-container">
                         <div class="dwqa-questions-archive">
                             <form id="dwqa-search" class="dwqa-search">
-                                <input data-nonce="fc987a6f77" type="text" placeholder="What do you want to know?" name="qs" class="ui-autocomplete-input" autocomplete="off" required>
-                                <button type="submit"><i class="fa fa-search"></i></button>
+                                <input data-nonce="fc987a6f77" (input)="filterSearch($event)" type="text" placeholder="What do you want to know?" name="qs" class="ui-autocomplete-input" autocomplete="off" required>
                             </form>
                             <div class="dwqa-question-filter">
                                 <span>Filter:</span>
                                 <ul>
-                                    <li><a href="#" class="active">All</a></li>
-                                    <li><a href="#">Open</a></li>
-                                    <li><a href="#">Resolved</a></li>
-                                    <li><a href="#">Closed</a></li>
-                                    <li><a href="#">Unanswered</a></li>
+                                    <li><a href="javascript:void(0)" (click)="filterStatus('All')" class="active">All</a></li>
+                                    <li><a href="javascript:void(0)" (click)="filterStatus('OPEN')">Open</a></li>
+                                    <li><a href="javascript:void(0)" (click)="filterStatus('RESOLVED')">Resolved</a></li>
+                                    <li><a href="javascript:void(0)" (click)="filterStatus('ANSWERED')">Answered</a></li>
+                                    <li><a href="javascript:void(0)" (click)="filterStatus('CLOSED')">Closed</a></li>
+                                    <li><a href="javascript:void(0)" (click)="filterStatus('UNANSWERED')">Unanswered</a></li>
+                                    <li><a href="javascript:void(0)" (click)="filterStatus('UNRESOLVED')">Unresolved</a></li>
                                 </ul>
                                 <label for="dwqa-sort-by" class="dwqa-sort-by">
-                                    <select id="dwqa-sort-by">
+                                    <select [(ngModel)]="sort" id="dwqa-sort-by">
                                         <option disabled="">Sort by</option>
-                                        <option value="/dwqa/?sort=views">Views</option>
-                                        <option selected="selected" value="/dwqa/?sort=answers">Answers</option>
-                                        <option value="/dwqa/?sort=votes">Votes</option>
+                                        <option value="views">Views</option>
+                                        <option value="replies">Answers</option>
                                     </select>
                                 </label>
                             </div>
                             <div class="dwqa-questions-list">
-                                <div class="dwqa-question-item" *ngFor="let topic of topics | paginate: { itemsPerPage: 5, currentPage: p, totalItems: topics.length }">
+                                <div class="dwqa-question-item" *ngFor="let topic of topics | sortTopics: sort |paginate: { itemsPerPage: 5, currentPage: p, totalItems: topics.length }">
                                     <header class="dwqa-question-title">
-                                        <a href="#" title="{{ topic.subject }}" (click)="show(topic.id)">{{ topic.subject }}</a>
+                                        <a href="javascript:void(0)" title="{{ topic.subject }}" (click)="show(topic.id)">{{ topic.subject }}</a>
                                     </header>
                                     <div class="dwqa-question-meta">
                                         <div  *ngFor="let statu of topic.status">
                                             <span *ngIf="statu === 'ANSWERED' || statu === 'RESOLVED' || statu === 'CLOSED'" class="dwqa-status dwqa-status-{{ statu }}"  title="{{ statu }}">{{ statu }}</span>
                                             <span *ngIf="statu === 'UNANSWERED' || statu === 'UNRESOLVED' || statu === 'OPEN'" class="dwqa-status dwqa-status-"  title=""></span>
                                         </div>
-                                        <span><a href="#">{{ topic.user.username }}</a> asked {{ date[topic.id] }}</span>
-                                        <span class="dwqa-question-category"> • <a href="#" rel="tag">{{ topic.category.name }}</a></span>
+                                        <span><a href="javascript:void(0)">{{ topic.user.username }}</a> asked {{ date[topic.id] }}</span>
+                                        <span class="dwqa-question-category"> • <a href="javascript:void(0)" rel="tag">{{ topic.category.name }}</a></span>
                                     </div>
                                     <div class="dwqa-question-stats">
                                         <span class="dwqa-views-count"><strong>{{ topic.views }}</strong>views</span>
@@ -76,13 +76,13 @@
                             <aside id="dwqa-categories-2" class="widget widget_categories dwqa_widget dwqa_widget_categories sidebar-list">
                                 <h2 class="widget-title">Topics Categories</h2>
                                 <ul>
-                                    <li><a href="#">Introduction</a></li>
-                                    <li><a href="#">Theme Options</a></li>
-                                    <li><a href="#">Typography</a></li>
-                                    <li><a href="#">Demo Install</a></li>
-                                    <li><a href="#">Billing</a></li>
-                                    <li><a href="#">Product Features</a></li>
-                                    <li><a href="#">Customer Support</a></li>
+                                    <li><a href="javascript:void(0)">Introduction</a></li>
+                                    <li><a href="javascript:void(0)">Theme Options</a></li>
+                                    <li><a href="javascript:void(0)">Typography</a></li>
+                                    <li><a href="javascript:void(0)">Demo Install</a></li>
+                                    <li><a href="javascript:void(0)">Billing</a></li>
+                                    <li><a href="javascript:void(0)">Product Features</a></li>
+                                    <li><a href="javascript:void(0)">Customer Support</a></li>
                                 </ul>
                             </aside>
                         </div>
@@ -91,11 +91,11 @@
                                 <div class="sidebar-popular-post dwqa-popular-questions sidebar-list">
                                     <h2 class="widget-title">Popular Questions</h2>
                                     <ul>
-                                        <li><a href="#">How to pin a sticky question to the top of the questions page?</a> <span>asked by Kiki Ralp</span></li>
-                                        <li><a href="#">How can I delete more than one post at a time?</a> <span>asked by Antawn Fiennes</span></li>
-                                        <li><a href="#">How do I require a password if I forgot it?</a> <span>asked by Kiki Ralp</span></li>
-                                        <li><a href="#">Where I can see or edit ratings I’ve posted?</a> <span>asked by Antawn Fiennes</span></li>
-                                        <li><a href="#">Who can post ratings and reviews?</a> <span>asked by Antawn Fiennes</span></li>
+                                        <li><a href="javascript:void(0)">How to pin a sticky question to the top of the questions page?</a> <span>asked by Kiki Ralp</span></li>
+                                        <li><a href="javascript:void(0)">How can I delete more than one post at a time?</a> <span>asked by Antawn Fiennes</span></li>
+                                        <li><a href="javascript:void(0)">How do I require a password if I forgot it?</a> <span>asked by Kiki Ralp</span></li>
+                                        <li><a href="javascript:void(0)">Where I can see or edit ratings I’ve posted?</a> <span>asked by Antawn Fiennes</span></li>
+                                        <li><a href="javascript:void(0)">Who can post ratings and reviews?</a> <span>asked by Antawn Fiennes</span></li>
                                     </ul>
                                 </div>
                             </aside>

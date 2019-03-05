@@ -18,6 +18,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ForumComponent } from './user/forum/forum.component';
 import { QuestionComponent } from './user/forum/question/question.component';
 import { AskComponent } from './user/forum/ask/ask.component';
+import { filterTopics, sortTopics } from './services/filterTopics.pipe';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -33,6 +34,8 @@ export function tokenGetter() {
     RegisterComponent,
     DashboardComponent,
     ForumComponent,
+    filterTopics,
+    sortTopics,
     QuestionComponent,
     AskComponent
   ],
