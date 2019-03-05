@@ -31,7 +31,7 @@
                                 </label>
                             </div>
                             <div class="dwqa-questions-list">
-                                <div class="dwqa-question-item" *ngFor="let topic of topics">
+                                <div class="dwqa-question-item" *ngFor="let topic of topics | paginate: { itemsPerPage: 5, currentPage: p, totalItems: topics.length }">
                                     <header class="dwqa-question-title">
                                         <a href="#" title="{{ topic.subject }}" (click)="show(topic.id)">{{ topic.subject }}</a>
                                     </header>
@@ -50,7 +50,18 @@
                                 </div>
                             </div>
                             <div class="dwqa-questions-footer">
-                                <div class="dwqa-pagination"><span class="dwqa-page-numbers dwqa-current">1</span><a class="dwqa-page-numbers" href="#">2</a><a class="dwqa-next dwqa-page-numbers" href="#">Next</a></div>
+                                    <pagination-controls  
+                                        (pageChange)="p = $event"
+                                        maxSize="9"
+                                        directionLinks="true"
+                                        autoHide="true"
+                                        responsive="true"
+                                        previousLabel="Previous"
+                                        nextLabel="Next"
+                                        screenReaderPaginationLabel="Pagination"
+                                        screenReaderPageLabel="page"
+                                        screenReaderCurrentLabel="You're on page">
+                                    </pagination-controls>
                             </div>
                         </div>
                     </div>

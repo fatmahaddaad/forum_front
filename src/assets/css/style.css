@@ -2084,7 +2084,8 @@ a.comment-reply:hover {
     color: #fff;
     font-size: 13px;
 }
-.dwqa-page-numbers {
+.dwqa-page-numbers,
+.ngx-pagination li {
     display: inline-block;
     width: 35px;
     height: 35px;
@@ -2092,26 +2093,40 @@ a.comment-reply:hover {
     color: #2196F3;
     text-align: center;
     border: 1px solid #2196F3;
-    margin-right: 10px;
+    margin-right: 10px !important;
     -webkit-transition: all .4s linear 0s;
     transition: all .4s linear 0s;
 }
-.dwqa-questions-footer .dwqa-current {
-    border-color: #b5b5b5;
-    color: #b5b5b5;
-    pointer-events: none;
+.ngx-pagination a, .ngx-pagination button
+{
+    color: #2196F3 !important;
 }
-.dwqa-next {
+.dwqa-questions-footer .dwqa-current,
+.ngx-pagination .current,
+.ngx-pagination .disabled {
+    border-color: #b5b5b5;
+    color: #b5b5b5 !important;
+    pointer-events: none;
+    background-color: #fff !important;
+}
+.dwqa-next,
+.ngx-pagination li.pagination-next {
     width: 70px;
+}
+.ngx-pagination li.pagination-previous {
+    width: 110px;
 }
 .dwqa-next:after {
     content: "\f101";
     font-family: "FontAwesome";
     padding-left: 5px;
 }
-.dwqa-page-numbers:hover {
-    background-color: #71c668;
-    color: #fff;
+.dwqa-page-numbers:hover,
+.ngx-pagination li:hover,
+.ngx-pagination a:hover,
+.ngx-pagination button:hover {
+    background-color: #71c668 !important;
+    color: #fff !important;
     border-color: #71c668;
 }
 .dwqa-questions-footer {
