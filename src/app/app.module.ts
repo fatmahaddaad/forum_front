@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { NotifierModule } from 'angular-notifier';
 import { JwtModule } from '@auth0/angular-jwt';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -48,7 +49,8 @@ export function tokenGetter() {
         whitelistedDomains: ['localhost:4200'],
         blacklistedRoutes: []
       }
-    })
+    }),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
