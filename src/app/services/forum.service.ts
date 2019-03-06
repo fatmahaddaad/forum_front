@@ -98,4 +98,11 @@ export class ForumService {
     this.createAuthorizationHeader(headers);
     return this.http.put(this.Url+`editProfile/${id}`, user, {headers});
   }
+  setProfilePicture(fileToUpload: File, id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    const formData: FormData = new FormData();
+    formData.append('picture', fileToUpload, fileToUpload.name);
+    return this.http.post(this.Url+`setProfilePicture/${id}`, formData, {headers});
+  }
 }

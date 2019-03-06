@@ -1762,6 +1762,22 @@ ul.comments-list li.children {
 .comment-pic {
     width: 15%;
 }
+.update-pic {
+    display: block;
+    text-align: center;
+    padding: 7px 0;
+    background-color: #333;
+    color: #fff;
+    margin-top: 1px;
+    cursor: pointer;
+}
+input[type=file] {
+    display: none;
+}
+.update-pic:hover {
+    background-color: #2196f3;
+    color: #fff;
+}
 ul.comments-list > li:after,
 ul.comments-list > li.children:after {
     clear: both;

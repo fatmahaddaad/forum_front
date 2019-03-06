@@ -13,19 +13,43 @@
                                 <ul class="comments-list">
                                     <li>
                                         <div class="comment">
-                                            <div class="comment-pic"><img src="http://127.0.0.1:8000/images/profile/{{currentUser.image}}" alt="comment"></div>
+                                            <div class="comment-pic">
+                                              <img *ngIf="!imgURL" src="http://127.0.0.1:8000/images/profile/{{currentUser.image}}" alt="comment">
+                                              <img *ngIf="imgURL" src="{{imgURL}}" alt="comment">
+                                                <form method="POST" (submit)="onUpdatePic()" >
+                                                  <label for="update-pic" class="update-pic">
+                                                      <i class="fa fa-camera" aria-hidden="true"></i> Update
+                                                  </label>
+                                                  <input type="file" 
+                                                    [(ngModel)]="Image" 
+                                                    name="Image" 
+                                                    accept="image/*" 
+                                                    id="update-pic"
+                                                    accept='image/*' 
+                                                    (change)="handleFileInput($event.target.files)">
+                                                    <div class="btn-group btn-group-justified"> 
+                                                        <div class="btn-group" role="group">
+                                                            <input *ngIf="imgURL" type="submit" value="OK" class="btn btn-success" />
+                                                        </div>
+                                                        <div class="btn-group" role="group">
+                                                            <input *ngIf="imgURL" type="button" value="NO" class="btn btn-danger" (click)="cancel_upload()" />
+                                                        </div>
+                                                    </div>
+                                                </form> 
+                                              <!-- </a> -->
+                                            </div>
                                             <div class="comment-text">
                                                 <h1>{{currentUser.fullname | uppercase}}</h1>
                                                 <p>{{currentUser.bio}}</p>
                                                 <a href="javascript:void()" (click)="edit()" class="comment-reply">Edit</a>
+                                                <ul>
+                                                    <li><span style="font-weight: bold">Birthdate : </span><span>{{birthdate}}</span></li> 
+                                                    <li><span style="font-weight: bold">Company : </span><span>{{currentUser.company }}</span></li> 
+                                                    <li><span style="font-weight: bold">Website : </span><span>{{currentUser.website }}</span></li>
+                                                    <li><span style="font-weight: bold">Email : </span><span>{{currentUser.email}}</span></li> 
+                                                </ul>
                                             </div>
                                         </div>
-                                        <ul>
-                                            <li><span style="font-weight: bold">Birthdate : </span><span>{{birthdate}}</span></li> 
-                                            <li><span style="font-weight: bold">Company : </span><span>{{currentUser.company }}</span></li> 
-                                            <li><span style="font-weight: bold">Website : </span><span>{{currentUser.website }}</span></li>
-                                            <li><span style="font-weight: bold">Email : </span><span>{{currentUser.email}}</span></li> 
-                                        </ul>
                                     </li>
                                 </ul>
                             </div>

@@ -23,6 +23,10 @@ export class ProfileComponent implements OnInit {
   website;
   bio;
   MyClass: boolean = true;
+  public imagePath;
+  imgURL: any;
+  fileToUpload: File = null;
+  public message: string;
   private readonly notifier: NotifierService;
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
@@ -78,5 +82,35 @@ export class ProfileComponent implements OnInit {
       this.MyClass= true;
     }
   }
-
+  handleFileInput(files) {
+    if (files.length === 0)
+      return;
+ 
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = "Only images are supported.";
+      return;
+    }
+ 
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    this.fileToUpload = files[0]; 
+    reader.onload = (_event) => { 
+      this.imgURL = reader.result; 
+    }
+  }
+  cancel_upload() {
+    this.imgURL = "";
+  }
+  onUpdatePic() {
+    this.forumService.setProfilePicture(this.fileToUpload, this.currentUser.id).subscribe(res =>
+      {
+      this.notifier.notify( 'success', 'You are awesome! I mean it!' );
+      }, (err) => {
+        console.log(err);
+        
+        this.notifier.notify( 'error', 'error' );
+      });
+  }
 }
