@@ -1,6 +1,6 @@
-<div *ngIf="!topics" class="loader"></div>
+<div *ngIf="!topics && !categories" class="loader"></div>
 <!-- Start Questions Area -->
-<div *ngIf="topics" class="question-area themeix-ptb" style="margin-bottom: -250px">
+<div *ngIf="topics && categories" class="question-area themeix-ptb" style="margin-bottom: -250px">
     <div class="container">
         <div class="row">
             <!-- Start Question -->
@@ -76,28 +76,8 @@
                             <aside id="dwqa-categories-2" class="widget widget_categories dwqa_widget dwqa_widget_categories sidebar-list">
                                 <h2 class="widget-title">Topics Categories</h2>
                                 <ul>
-                                    <li><a href="javascript:void(0)">Introduction</a></li>
-                                    <li><a href="javascript:void(0)">Theme Options</a></li>
-                                    <li><a href="javascript:void(0)">Typography</a></li>
-                                    <li><a href="javascript:void(0)">Demo Install</a></li>
-                                    <li><a href="javascript:void(0)">Billing</a></li>
-                                    <li><a href="javascript:void(0)">Product Features</a></li>
-                                    <li><a href="javascript:void(0)">Customer Support</a></li>
+                                    <li *ngFor="let category of categories"><a href="javascript:void()">{{ category.name }}</a></li>
                                 </ul>
-                            </aside>
-                        </div>
-                        <div class="col-md-12 col-sm-6">
-                            <aside class="widget dwqa-widget dwqa-popular-question">
-                                <div class="sidebar-popular-post dwqa-popular-questions sidebar-list">
-                                    <h2 class="widget-title">Popular Questions</h2>
-                                    <ul>
-                                        <li><a href="javascript:void(0)">How to pin a sticky question to the top of the questions page?</a> <span>asked by Kiki Ralp</span></li>
-                                        <li><a href="javascript:void(0)">How can I delete more than one post at a time?</a> <span>asked by Antawn Fiennes</span></li>
-                                        <li><a href="javascript:void(0)">How do I require a password if I forgot it?</a> <span>asked by Kiki Ralp</span></li>
-                                        <li><a href="javascript:void(0)">Where I can see or edit ratings I’ve posted?</a> <span>asked by Antawn Fiennes</span></li>
-                                        <li><a href="javascript:void(0)">Who can post ratings and reviews?</a> <span>asked by Antawn Fiennes</span></li>
-                                    </ul>
-                                </div>
                             </aside>
                         </div>
                     </div>

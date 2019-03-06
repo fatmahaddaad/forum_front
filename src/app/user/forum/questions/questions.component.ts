@@ -13,11 +13,15 @@ export class QuestionsComponent implements OnInit {
   topics: any;
   date : any[] = [];
   searchInput: string = "";
+  categories: any;
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
     private router: Router,) { }
 
   ngOnInit() {
+    this.forumService.getCategories().subscribe(file => {
+      this.categories = file.json();
+    });
     this.forumService.getTopics().subscribe(file => {
       this.topics = file.json();
       this.topics.forEach(topic => {

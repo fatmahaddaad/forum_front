@@ -1,21 +1,48 @@
-<form method="POST" (submit)="onAsk()" >
-  <div class="form-group">
-      <label for="subject">Subject</label>
-      <input type="text" class="form-control" name="subject" [(ngModel)]="subject">
-  </div>
-  <div class="form-group">
-      <label for="content">Question Details</label>
-      <textarea class="form-control" name="content" [(ngModel)]="content"></textarea>
-  </div>
-  <div class="form-group">
-      <label for="category_id">Category</label>
-      <select class="form-control" name="category_id" [(ngModel)]="category_id">
-        <option value="" selected>Select question category</option>
-        <option *ngFor="let category of categories" value="{{ category.id }}">{{ category.name }}</option>
-      </select>
-  </div>
-  <div>
-      <input type="submit" value="submit" class="btn btn-default" />
-  </div>
-</form>
+<div *ngIf="!categories" class="loader"></div>
 <notifier-container></notifier-container>
+<!-- Start Questions Area -->
+<div *ngIf="categories" class="question-area themeix-ptb">
+    <div class="container">
+        <div class="row">
+            <!-- Start Question -->
+            <div class="col-md-9">
+                <div class="questions-wrapper">
+                    <div class="dwqa-container">
+                      <form class="dwqa-content-edit-form" method="POST" (submit)="onAsk()" >
+                        <label for="subject">Subject</label>
+                        <input type="text" name="subject" [(ngModel)]="subject">
+                        
+                        <label for="content">Question Details</label>
+                        <textarea cols="30" rows="10" name="content" [(ngModel)]="content"></textarea>
+
+                        <label for="category_id">Category</label>
+                        <select  name="question-category" id="question-category" class="postform" [(ngModel)]="category_id">
+                          <option *ngFor="let category of categories" value="{{ category.id }}">{{ category.name }}</option>
+                        </select>
+
+                        <input id="wp-submit" type="submit" value="Submit" name="wp-submit" class="themeix-btn hover-bg">
+                      </form>
+                    </div>
+                </div>
+            </div>
+            <!-- End Question -->
+            <!-- Start Blog Sidebar -->
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="blog-sidebar">
+                        <div class="col-md-12 col-sm-6">
+                            <aside id="dwqa-categories-2" class="widget widget_categories dwqa_widget dwqa_widget_categories sidebar-list">
+                                <h2 class="widget-title">Topics Categories</h2>
+                                <ul>
+                                  <li *ngFor="let category of categories"><a href="javascript:void()">{{ category.name }}</a></li>
+                                </ul>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Blog Sidebar -->
+        </div>
+    </div>
+</div>
+<!-- End  Questions Area -->

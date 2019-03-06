@@ -23,6 +23,7 @@ export class QuestionComponent implements OnInit {
   date : any;
   replyDate : any[] = [];
   commentDate : any[] = [];
+  categories: any;
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
     private router: Router,
@@ -33,6 +34,9 @@ export class QuestionComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.forumService.getCategories().subscribe(file => {
+      this.categories = file.json();
+    });
     let id = this.route.snapshot.paramMap.get('id');
     this.forumService.getRepliesByTopic(id).subscribe(file => {
       this.topic = file.json().topic;

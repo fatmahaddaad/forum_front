@@ -1,12 +1,13 @@
+<div *ngIf="!topic && !categories" class="loader"></div>
 <!-- Start Answers Area -->
-<div class="answers-area themeix-ptb">
+<div *ngIf="topic && categories" class="answers-area themeix-ptb">
     <div class="container">
         <div class="row">
-            <div class="col-md-9" *ngIf="topic">
+            <div class="col-md-9">
                 <div class="answers-wrapper">
                     <div class="dwqa-single-question">
                         <div class="dwqa-breadcrumbs">
-                            <a href="#">Questions</a>
+                            <a href="/forum/questions">Questions</a>
                             <span class="dwqa-sep"> › </span>
                             <a href="#">Category : {{ topic.category.name }}</a>
                             <span class="dwqa-sep"> › </span>
@@ -35,7 +36,7 @@
                         <!-- End Questions Ityem -->
                         <!-- Start Answer item -->
                         <div class="dwqa-answers">
-                            <div class="dwqa-answers-title"><span>{{ replies.length }} Answers</span></div>
+                            <div *ngIf="replies.length" class="dwqa-answers-title"><span>{{ replies.length }} Answers</span></div>
                             <div class="dwqa-answers-list">
                                 <div *ngFor="let reply of replies;let index = index;" class="dwqa-answer-item dwqa-best-answer" id="answer-{{ reply.id }}">
                                     <div class="dwqa-answer-vote">
@@ -109,18 +110,8 @@
                             <aside id="dwqa-categories-2" class="widget widget_categories dwqa_widget dwqa_widget_categories sidebar-list">
                                 <h2 class="widget-title">Topics Categories</h2>
                                 <ul>
-                                    <li><a href="#"></a></li>
+                                    <li *ngFor="let category of categories"><a href="javascript:void()">{{ category.name }}</a></li>
                                 </ul>
-                            </aside>
-                        </div>
-                        <div class="col-md-12 col-sm-6">
-                            <aside class="widget dwqa-widget dwqa-popular-question">
-                                <div class="sidebar-popular-post dwqa-popular-questions">
-                                    <h2 class="widget-title">Popular Questions</h2>
-                                    <ul>
-                                        <li><a href="#"></a></li>
-                                    </ul>
-                                </div>
                             </aside>
                         </div>
                     </div>
