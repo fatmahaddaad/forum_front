@@ -8,8 +8,10 @@ import { RegisterComponent } from './user/register/register.component';
 import { ForumComponent } from './user/forum/forum.component';
 import { QuestionComponent } from './user/forum/question/question.component';
 import { AskComponent } from './user/forum/ask/ask.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  { path: '' , component: HomeComponent}, 
   { path: 'login' , component: LoginComponent}, 
   { path: 'register', component: RegisterComponent},
   { path: 'forum', component: ForumComponent},

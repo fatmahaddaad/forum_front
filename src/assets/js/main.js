@@ -33,7 +33,8 @@ $('#bootstrap-touch-slider').bsTouchSlider();
 	2. Accordion
 ===============================================*/ 
 
-
+$( document ).ready(function() {
+    
     var panelHeading = $(".panel-heading a");
 
     panelHeading.on("click", function(e) {
@@ -92,6 +93,7 @@ $('#bootstrap-touch-slider').bsTouchSlider();
             }
         }
     });
+
 
 /*=============================================
 	3. Google Map
@@ -483,6 +485,6 @@ particlesJS("particles-js", {
 }
 
 );
-
+})
 
 }(jQuery));

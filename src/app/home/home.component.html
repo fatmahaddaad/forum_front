@@ -1,3 +1,686 @@
-<p>
-  home works!
-</p>
+<!-- Preloader starts-->
+<div class="preloader">
+  <div class="loading-center">
+      <div class="loading-center-absolute">
+          <div class="object object_one"></div>
+          <div class="object object_two"></div>
+          <div class="object object_three"></div>
+      </div>
+  </div>
+</div>
+<!-- Preloader ends -->
+
+<!-- Start Header -->
+<header>
+  <!-- Start Mainmenu -->
+  <div class="menu-area navbar-fixed-top ">
+      <div class="container">
+          <div class="row">
+              <div class="mainmenu-wrapper">
+                  <!-- Start Header Logo -->
+                  <div class="col-xs-12 col-md-3">
+                      <div class="header-logo">
+                          <a href="index-2.html"><img src="../../assets/images/logo-f.png" alt="logo"></a>
+                      </div>
+                  </div>
+                  <!-- End Header Logo -->
+                  <!-- Start Navigation -->
+                  <div class="col-xs-12 col-md-9">
+                      <div class="mainmenu">
+                          <div class="navbar navbar-right">
+                              <div class="navbar-header visible-xs">
+                                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                      <span class="sr-only">Toggle navigation</span>
+                                      <span class="icon-bar"></span>
+                                      <span class="icon-bar"></span>
+                                      <span class="icon-bar"></span>
+                                  </button>
+                              </div>
+                              <div class="collapse navbar-collapse top-menu">
+                                  <nav>
+                                      <ul class="nav navbar-nav">
+                                          <li class="active"><a href="/">Home<span>Get everything</span></a></li>
+                                          <li><a href="javascript:void(0)">About<span>Know about us</span></a></li>								
+                                          <li><a href="javascript:void(0)">Questions<span>Ask Your Question</span></a>
+                                              <ul class="dropdown">
+                                                  <li><a href="/forum/"> <span><i class="fa fa-question-circle"></i></span>All Questions</a></li>														
+                                                  <li><a href="/ask-question/"><span><i class="fa  fa-question-circle-o"></i></span>Ask Questions</a></li>
+                                                </ul>
+                                              </li>
+                                          <li><a href="javascript:void(0)">Blog<span>All Blog Posts</span></a></li>
+                                          <li><a href="javascript:void(0)">Contact<span>Let us contact</span></a></li>
+                                          <li *ngIf="!auth.isAuthenticated()"><a href="/login/"><span><i class="fa fa-sign-in"></i></span>Login</a></li>
+                                          <li *ngIf="!auth.isAuthenticated()"><a href="/register/"><span><i class="fa fa-registered"></i></span>Register</a></li>
+                                          <li *ngIf="auth.isAuthenticated()"><a href="javascript:void(0)" (click)="onLogout()"><span><i class="fa fa-sign-out"></i></span>Logout</a></li>
+                                      </ul>
+                                  </nav>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- End Navigation -->
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- End Mainmenu -->
+  <!-- Start Mobile Menu Area -->
+  <div class="col-xs-12 visible-xs">
+      <div class="mobile-menu">
+          <nav>
+              <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="javascript:void(0)">About</a></li>
+                  <li><a href="javascript:void(0)">Questions</a>
+                    <ul>
+                      <li><a href="/forum/">All Questions</a></li>
+                      <li><a href="/ask-question/">Ask Questions</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="javascript:void(0)">Blog</a></li>
+                  <li><a href="javascript:void(0)">Contact</a></li>
+                  <li *ngIf="!auth.isAuthenticated()"><a href="/login/"><span><i class="fa fa-sign-in"></i></span>Login</a></li>
+                  <li *ngIf="!auth.isAuthenticated()"><a href="/register/"><span><i class="fa fa-registered"></i></span>Register</a></li>
+                  <li *ngIf="auth.isAuthenticated()"><a href="javascript:void(0)" (click)="onLogout()"><span><i class="fa fa-sign-out"></i></span>Logout</a></li>
+              </ul>
+          </nav>
+      </div>
+  </div>
+  <!-- End MObile Menu Area -->
+</header>
+<!-- End Header -->
+<!-- Start Slider Area -->
+<div class="slider-area">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="slider-wrapper-2">
+             <div id="particles-js">
+              <div class="slider-fixed-text">
+                  <h1>All in One Support Portal</h1>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, incidunt, quis! Voluptatem repellat, modi sunt odio. Eum dignissimos cum odio, sed impedit! Omnis harum suscipit voluptatem rerum architecto nemo atque.</p>
+                    <div class="slider-buttons">
+                        <a href="javascript:void(0)" class="themeix-btn white-bg">Latests Updates</a>
+                        <a href="/ask-question/" class="themeix-btn primary-bg">Ask Questions</a>
+                    </div>
+              </div>
+             </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!--End Slider Area -->
+<!-- Start Document Source Area -->
+<section>
+  <div class="document-source-area themeix-ptb">
+      <div class="container">
+          <div class="row">
+              <div class="col-sm-4">
+                  <div class="single-box">
+                      <div class="box-inner">
+                          <img src="../../assets/images/icon1.png" alt="box img">
+                          <h3>QA Section</h3>
+                          <p>45 Questions / 994 Answers</p>
+                          <a href="javascript:void(0)" class="themeix-btn danger-bg">See All Questions</a>
+                      </div>
+                      <div class="box-flip">
+                        <div class="flip-box-innner">
+                          <h3>Question Answer Section</h3>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi dolor optio, dolore labore cupiditate, repudiandae atque adipisci obcaecati laborum.</p>
+                          <a href="javascript:void(0)" class="themeix-btn danger-bg">See All Questions</a>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-4">
+                  <div class="single-box">
+                      <div class="box-inner">
+                          <img src="../../assets/images/icon2.png" alt="box img">
+                          <h3>Join Blog</h3>
+                          <p>23 Topics / 49 Posts</p>
+                          <a href="javascript:void(0)" class="themeix-btn hover-bg">Join The Blog</a>
+                      </div>
+                      <div class="box-flip">
+                        <div class="flip-box-innner">
+                          <h3>Join Blog</h3>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi dolor optio, dolore labore cupiditate, repudiandae atque adipisci obcaecati laborum.</p>
+                          <a href="javascript:void(0)" class="themeix-btn danger-bg">Visit Blog</a>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-4">
+                  <div class="single-box">
+                      <div class="box-inner">
+                          <img src="../../assets/images/icon3.png" alt="box img">
+                          <h3>Latest Updates</h3>
+                          <p>14 Updates / 9 Comments</p>
+                          <a href="javascript:void(0)" class="themeix-btn primary-bg">Get Updates</a>
+                      </div>
+                      <div class="box-flip">
+                         <div class="flip-box-innner">
+                          <h3>Latest Updates</h3>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi dolor optio, dolore labore cupiditate, repudiandae atque adipisci obcaecati laborum.</p>
+                          <a href="javascript:void(0)" class="themeix-btn danger-bg">See All Updates</a>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- End Document Source Area -->
+<!-- Start Topics Section Area -->
+<section>
+  <div class="topics-section-area themeix-ptb">
+      <div class="container">
+          <div class="row">
+              <div class="col-sm-8 col-md-9">
+                  <!-- Start Topics Link Area -->
+                  <div class="topics-links">
+                      <div class="themeix-section-title">
+                          <h2>Explore Topics</h2>
+                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="single-links">
+                                  <h4 class="list-title">Introduction (19)</h4>
+                                  <ul>
+                                      <li><a href="javascript:void(0)">How to install the theme?</a></li>
+                                      <li><a href="javascript:void(0)">What is the feature of that theme?</a></li>
+                                      <li><a href="javascript:void(0)">Is there any basic requirements?</a></li>
+                                      <li><a href="javascript:void(0)">What is included in that package?</a></li>
+                                      <li><a href="javascript:void(0)">I want to purchase, now what to do?</a></li>
+                                  </ul>
+                              </div>
+                              <div class="single-links">
+                                  <h4 class="list-title">Demo Install (18)</h4>
+                                  <ul>
+                                      <li><a href="javascript:void(0)">How to install the theme?</a></li>
+                                      <li><a href="javascript:void(0)">What is the feature of that theme?</a></li>
+                                      <li><a href="javascript:void(0)">Is there any basic requirements?</a></li>
+                                      <li><a href="javascript:void(0)">What is included in that package?</a></li>
+                                      <li><a href="javascript:void(0)">I want to purchase, now what to do?</a></li>
+                                  </ul>
+                              </div>
+                              <div class="topics-btn">
+                                  <a href="/forum/" class="themeix-btn hover-bg">See All Topics</a>
+                                  <a href="/ask-question/" class="themeix-btn primary-bg">Ask Question</a>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="single-links">
+                                  <h4 class="list-title">Introduction (19)</h4>
+                                  <ul>
+                                      <li><a href="javascript:void(0)">How to install the theme?</a></li>
+                                      <li><a href="javascript:void(0)">What is the feature of that theme?</a></li>
+                                      <li><a href="javascript:void(0)">Is there any basic requirements?</a></li>
+                                      <li><a href="javascript:void(0)">What is included in that package?</a></li>
+                                      <li><a href="javascript:void(0)">I want to purchase, now what to do?</a></li>
+                                  </ul>
+                              </div>
+                              <div class="single-links">
+                                  <h4 class="list-title">Demo Install (18)</h4>
+                                  <ul>
+                                      <li><a href="javascript:void(0)">How to install the theme?</a></li>
+                                      <li><a href="javascript:void(0)">What is the feature of that theme?</a></li>
+                                      <li><a href="javascript:void(0)">Is there any basic requirements?</a></li>
+                                      <li><a href="javascript:void(0)">What is included in that package?</a></li>
+                                      <li><a href="javascript:void(0)">I want to purchase, now what to do?</a></li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- End Topics Link Area -->
+              </div>
+              <!--Start Sidebar -->
+              <div class="col-sm-4 col-md-3">
+                  <div class="sidebar-list">
+                      <h4 class="list-title">Demo Install (18)</h4>
+                      <ul>
+                          <li><a href="javascript:void(0)">Introduction</a></li>
+                          <li><a href="javascript:void(0)">Theme Options</a></li>
+                          <li><a href="javascript:void(0)">Typography</a></li>
+                          <li><a href="javascript:void(0)">Demo Install</a></li>
+                          <li><a href="javascript:void(0)">Billing</a></li>
+                          <li><a href="javascript:void(0)">Product Features</a></li>
+                          <li><a href="javascript:void(0)">Customer Support</a></li>
+                      </ul>
+                  </div>
+                  <div class="sidebar-list">
+                      <h4 class="list-title">Recent Updates</h4>
+                      <ul>
+                          <li><a href="javascript:void(0)">Security and Maintenance Release</a><span>Documenter, Version : 2.1</span></li>
+                          <li><a href="javascript:void(0)">Special Monthly Updates - V 2.1</a><span>Documenter, Version : 2.1</span></li>
+                          <li><a href="javascript:void(0)">Jhon Security Updates - V 2.0</a><span>Documenter, Version : 2.1</span></li>
+                          <li><a href="javascript:void(0)">Prior Updates - V 1.1</a><span>Documenter, Version : 2.1</span></li>
+                          <li><a href="javascript:void(0)">Initial Release - V 1.0</a><span>Documenter, Version : 2.1</span></li>
+                      </ul>
+                  </div>
+              </div>
+              <!--End Sidebar -->
+          </div>
+      </div>
+  </div>
+</section>
+<!-- End Topics Section Area -->
+<!-- Start FAQ Section -->
+<section class="faq-section themeix-ptb">
+  <div class="container">
+      <div class="row">
+
+          <div class="col-sm-7">
+              <div class="themeix-section-title">
+                  <h2>Frequently Asked Questions</h2>
+                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
+              </div>				
+              <div class="faq-tab-wrapper">
+                  <div class="panel-group" id="accordion">
+                      <div class="panel panel-default themeix-panel">
+                          <div class="panel-heading">
+                              <h4 class="panel-title">
+                                 <a  data-toggle="collapse" data-parent="#accordion" class="minus-sign" href="#accordion-one">What is documenter?</a>
+                             </h4>
+                          </div>
+                          <div id="accordion-one" class="panel-collapse collapse in">
+                              <div class="panel-body">
+                                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text.</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="panel panel-default themeix-panel">
+                          <div class="panel-heading">
+                              <h4 class="panel-title">
+                                 <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#accordion-two">Can you help me customize my site ?</a>
+                             </h4>
+                          </div>
+                          <div id="accordion-two" class="panel-collapse collapse">
+                              <div class="panel-body">
+                                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text.</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="panel panel-default themeix-panel">
+                          <div class="panel-heading">
+                              <h4 class="panel-title">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#accordion-three">What kind of your themes?</a>
+                             </h4>
+                          </div>
+                          <div id="accordion-three" class="panel-collapse collapse">
+                              <div class="panel-body">
+                                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text.</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="panel panel-default themeix-panel">
+                          <div class="panel-heading">
+                              <h4 class="panel-title">
+                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#accordion-four">How do I activate the forum ?</a>
+                             </h4>
+                          </div>
+                          <div id="accordion-four" class="panel-collapse collapse">
+                              <div class="panel-body">
+                                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text.</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="panel panel-default themeix-panel">
+                          <div class="panel-heading">
+                              <h4 class="panel-title">
+                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#accordion-five">Do I need special software ?</a>
+                             </h4>
+                          </div>
+                          <div id="accordion-five" class="panel-collapse collapse">
+                              <div class="panel-body">
+                                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text.</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="panel panel-default themeix-panel">
+                          <div class="panel-heading">
+                              <h4 class="panel-title">
+                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#accordion-six">Do I need special software ?</a>
+                             </h4>
+                          </div>
+                          <div id="accordion-six" class="panel-collapse collapse">
+                              <div class="panel-body">
+                                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text.</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Start Live Chat -->
+          <div class="col-md-offset-1 col-sm-4">	
+              <div class="live-chat">
+                  <img src="../../assets/images/person1.png" alt="person">
+      <div class="chat-agent-details">
+        <h6>Nandita Roy</h6>
+        <p>Wordpress Support Ninja</p>
+      </div>
+                  <div class="chat-link">
+                      <a href="javascript:void(0)"><span class="live">Live</span> Chat Agent <span>Get 24/7 Customer Support</span></a>
+                  </div>
+      <div class="chat-phone">
+        +123 123 1234
+      </div>
+              </div>
+          </div>
+          <!-- End Live Chat -->
+      </div>
+  </div>
+</section>
+<!-- End FAQ Section -->
+<!-- Start Parallax section -->
+<div class="parallax-area themeix-ptb">
+  <div class="container">
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <div class="themeix-section-title text-center">
+             <h2>Highlighted Features</h2>
+             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae numquam, quam doloribus iure dolorum molestias et autem dolores possimus, sed inventore non qui ipsa recusandae tenetur mollitia consequatur, placeat tempore.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="single-article">
+        <div class="article-icon">
+            <span class="fa fa-gears"></span>
+        </div>
+          <div class="article-text">
+              <a class="article-title" href="javascript:void(0)">I do UX design</a>
+              <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it.</p>
+          </div>
+       </div>
+      </div>
+     <div class="col-sm-6 col-md-4">
+       <div class="single-article">
+          <div class="article-icon">
+              <span class="fa fa-desktop"></span>
+          </div>
+          <div class="article-text">
+              <a class="article-title" href="javascript:void(0)">I do interaction design</a>
+              <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it.</p>
+          </div>
+      </div>
+     </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="single-article">
+          <div class="article-icon">
+              <span class="fa fa-magic"></span>
+          </div>
+          <div class="article-text">
+              <a class="article-title" href="javascript:void(0)">I do graphic design</a>
+              <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="single-article">
+        <div class="article-icon">
+            <span class="fa fa-question"></span>
+        </div>
+          <div class="article-text">
+              <a class="article-title" href="javascript:void(0)">How You Get Success ?</a>
+              <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it.</p>
+          </div>
+       </div>
+      </div>
+     <div class="col-sm-6 col-md-4">
+       <div class="single-article">
+          <div class="article-icon">
+              <span class="fa fa-key"></span>
+          </div>
+          <div class="article-text">
+              <a class="article-title" href="javascript:void(0)">Secreet Success Key</a>
+              <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it.</p>
+          </div>
+      </div>
+     </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="single-article">
+          <div class="article-icon">
+              <span class="fa fa-frown-o"></span>
+          </div>
+          <div class="article-text">
+              <a class="article-title" href="javascript:void(0)">Why You Failure ?</a>
+              <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it.</p>
+          </div>
+        </div>
+      </div>
+      </div>
+  </div>
+</div>
+<!-- End Parallax section -->
+<!-- Testimonials -->
+<section class="testimonials-section themeix-ptb">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-offset-3 col-md-6">
+              <div class="themeix-section-title text-center">
+                  <h2>What Our Happy Customer Says</h2>
+                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
+              </div>
+          </div>
+          <div class="col-md-12">
+              <div class="testimonials-wrapper owl-carousel">
+                  <div class="single-testimonial wow zoomIn animated">
+                      <div class="testimonial-info">
+                          <p>Aliquam dapibus tincidunt metus. Praesent justo dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Lorem ipsu liquam dapibus tincidunt metus. Praesent justo dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Lorem ipsum.</p>
+                      </div>
+                      <div class="testimonial-author">
+                          <h5>John Doe</h5>
+                          <span>E-Commerce Businessmen</span>
+                      </div>
+                  </div>
+                  <div class="single-testimonial wow zoomIn animated">
+                      <div class="testimonial-info">
+                          <p>Aliquam dapibus tincidunt metus. Praesent justo dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Lorem ipsu liquam dapibus tincidunt metus. Praesent justo dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Lorem ipsum.</p>
+                      </div>
+                      <div class="testimonial-author">
+                          <h5>Mr. James</h5>
+                          <span>Web Designer & SEO Expert</span>
+                      </div>
+                  </div>
+                  <div class="single-testimonial wow zoomIn animated">
+                      <div class="testimonial-info">
+                          <p>Aliquam dapibus tincidunt metus. Praesent justo dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Lorem ipsu liquam dapibus tincidunt metus. Praesent justo dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Lorem ipsum.</p>
+                      </div>
+                      <div class="testimonial-author">
+                          <h5>John Doe</h5>
+                          <span>E-Commerce Businessmen</span>
+                      </div>
+                  </div>
+                  <div class="single-testimonial wow zoomIn animated">
+                      <div class="testimonial-info">
+                          <p>Aliquam dapibus tincidunt metus. Praesent justo dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Lorem ipsu liquam dapibus tincidunt metus. Praesent justo dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Lorem ipsum.</p>
+                      </div>
+                      <div class="testimonial-author">
+                          <h5>Mr. James</h5>
+                          <span>Web Designer & SEO Expert</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- End Testimonials -->
+<!-- Awards -->
+<div class="awards-section themeix-ptb">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="single-awards owl-carousel">
+                  <div><img src="../../assets/images/client-1.png" alt="Awards"></div>
+                  <div><img src="../../assets/images/client-5.png" alt="Awards"></div>
+                  <div><img src="../../assets/images/client-3.png" alt="Awards"></div>
+                  <div><img src="../../assets/images/client-4.png" alt="Awards"></div>
+                  <div><img src="../../assets/images/client-5.png" alt="Awards"></div>
+                  <div><img src="../../assets/images/client-1.png" alt="Awards"></div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- End Awards -->
+<!-- Start Contact Form Area -->
+<div class="contact-section pt-80">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-offset-3 col-md-6">
+              <div class="themeix-section-title">
+                  <h2>Ask What You Want To Know?</h2>
+                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
+              </div>
+          </div>
+          <div class="col-sm-8 wow bounceInLeft animated">
+              <div class="contact-form">
+                  <form action="#" method="post">
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <input class="form-control" name="name" placeholder="Full Name *" type="text" required>
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <input class="form-control" name="email" placeholder="Email *" type="email" required>
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <input class="form-control" name="phone" placeholder="Phone" type="text" required>
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <input class="form-control" name="website" placeholder="Website" type="text">
+                          </div>
+                      </div>
+                      <div class="col-sm-12">
+                          <div class="form-group">
+                              <textarea rows="5" class="form-control" name="comment" placeholder="Your Message *"></textarea>
+                          </div>
+                      </div>
+                      <div class="col-sm-12">
+                          <button type="submit" class="themeix-btn hover-bg">Send Message</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+          <div class="col-sm-4 wow bounceInRight animated">
+              <div class="contact-info">
+                  <img class="img-responsive" src="../../assets/images/person2.png" alt="contact">
+              </div>
+          </div>
+
+      </div>
+  </div>
+</div>
+<!-- End Contact Form Area -->	
+<!-- Start Footer Area -->
+<footer>
+  <div class="footer-area themeix-ptb">
+      <div class="container">
+          <div class="row">
+              <div class="footer-wrapper">
+                  <div class="col-sm-6 col-md-3">
+                      <div class="single-footer">
+                          <h3 class="footer-heading">About Us</h3>
+                          <div class="single-footer-text">
+                              <p>Vestibulum quis cursus mi, vitae mollis metus.Nulam eu lects gravida, bibendum enim in, vulputate erat. Vestibulum ullamcorper ornare magna</p>
+                          </div>
+                          <div class="social-links">
+                              <ul>
+                                  <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
+                                  <li class="fb-link"><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
+                                  <li class="gp-link"><a href="javascript:void(0)"><i class="fa fa-google-plus"></i></a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                      <div class="single-footer">
+                          <h3 class="footer-heading">Recent Products</h3>
+                          <div class="footer-list">
+                              <ul>
+                                  <li><a target="_blank" href="https://themeforest.net/item/hostix-responsive-parallax-hosting-website-html5-template/19747783">Hostix</a></li>
+                                  <li><a target="_blank" href="https://themeforest.net/item/cleanhost-responsive-web-hosting-html5-template/19950579">Cleanhost</a></li>
+                                  <li><a target="_blank" href="https://themeforest.net/item/law-firm-lawyer-business-psd-template/19906137">Law Firm</a></li>
+                                  <li><a target="_blank" href="https://themeforest.net/item/etube-video-blog-site-psd-template/19821837">eTube</a></li>
+                                  <li><a href="javascript:void(0)">Documenter</a></li>
+                                  <li><a href="javascript:void(0)">Spa Care</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                      <div class="single-footer">
+                          <h3 class="footer-heading">get support</h3>
+                          <div class="footer-list">
+                              <ul>
+                                  <li><a href="javascript:void(0)">Our Forum</a></li>
+                                  <li><a href="javascript:void(0)">Facebook Page</a></li>
+                                  <li><a href="javascript:void(0)">Live Chat</a></li>
+                                  <li><a href="javascript:void(0)">Toll Free Number</a></li>
+                                  <li><a href="javascript:void(0)">Support Agent</a></li>
+                                  <li><a href="javascript:void(0)">Tickets</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                      <div class="single-footer">
+                          <h3 class="footer-heading">get support</h3>
+                          <p>Don’t miss our latest realeses and important updates</p>
+                          <div class="subscribe-form">
+                              <form action="#">
+                                  <input type="email" name="subscribe" id="subscribe" class="form-control" placeholder="Email" required>
+                                  <button type="submit" class="hover-bg">Go</button>
+                              </form>
+                              <span>We never do spam with you</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Start Footer Bottom Area -->
+  <div class="footer-bottom-area themeix-pb">
+      <div class="container">
+          <div class="row">
+              <div class="col-sm-12">
+                  <div class="footer-bottom">
+                      <div class="footer-logo">
+                          <a href="javascript:void(0)"><img src="../../assets/images/footer-logo-f.png" alt="logo"></a>
+                      </div>
+                      <div class="footer-links">
+                          <ul>
+                              <li><a href="javascript:void(0)">Privacy Policy</a></li>
+                              <li><a href="javascript:void(0)">Refund Policy</a></li>
+                              <li><a href="javascript:void(0)">Disclaimer</a></li>
+                          </ul>
+                      </div>
+                      <div class="copyright-text">
+                          <p>&copy; 2019 - All rights reserved. </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- End Footer Bottom Area -->
+  <!-- Start Scroll To Top -->
+  <div class="scroll-top">
+      <div class="scroll-icon">
+          <i class="fa fa-angle-up"></i>
+      </div>
+  </div>
+  <!-- End Scroll To Top -->
+</footer>
+<!-- End Footer Area -->
