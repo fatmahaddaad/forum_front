@@ -319,6 +319,7 @@ ul.dropdown li a span {
     padding-right: 12px;
     font-size: 18px;
 }
+.mean-container .mean-nav li.active>a, 
 .navbar-nav li.active>a {
 	    color:#2196F3
 }

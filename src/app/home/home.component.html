@@ -40,18 +40,18 @@
                                   <nav>
                                       <ul class="nav navbar-nav">
                                           <li class="active"><a href="/">Home<span>Get everything</span></a></li>
-                                          <li><a href="javascript:void(0)">About<span>Know about us</span></a></li>								
-                                          <li><a href="javascript:void(0)">Questions<span>Ask Your Question</span></a>
-                                              <ul class="dropdown">
-                                                  <li><a href="/forum/"> <span><i class="fa fa-question-circle"></i></span>All Questions</a></li>														
-                                                  <li><a href="/ask-question/"><span><i class="fa  fa-question-circle-o"></i></span>Ask Questions</a></li>
-                                                </ul>
-                                              </li>
-                                          <li><a href="javascript:void(0)">Blog<span>All Blog Posts</span></a></li>
-                                          <li><a href="javascript:void(0)">Contact<span>Let us contact</span></a></li>
-                                          <li *ngIf="!auth.isAuthenticated()"><a href="/login/"><span><i class="fa fa-sign-in"></i></span>Login</a></li>
-                                          <li *ngIf="!auth.isAuthenticated()"><a href="/register/"><span><i class="fa fa-registered"></i></span>Register</a></li>
-                                          <li *ngIf="auth.isAuthenticated()"><a href="javascript:void(0)" (click)="onLogout()"><span><i class="fa fa-sign-out"></i></span>Logout</a></li>
+                                            <li><a href="javascript:void(0)">About<span>Know about us</span></a></li>								
+                                            <li [class.active]="this.router.url == '/forum/questions' || this.router.url == '/forum/ask-question'"><a href="javascript:void(0)">Questions<span>Ask Your Question</span></a>
+                                                <ul class="dropdown">
+                                                    <li [class.active]="this.router.url == '/forum/questions'"><a href="/forum/questions"> <span><i class="fa fa-question-circle"></i></span>All Questions</a></li>														
+                                                    <li [class.active]="this.router.url == '/forum/ask-question'"><a href="/forum/ask-question"><span><i class="fa  fa-question-circle-o"></i></span>Ask Questions</a></li>
+                                                    </ul>
+                                                </li>
+                                            <li><a href="javascript:void(0)">Blog<span>All Blog Posts</span></a></li>
+                                            <li><a href="javascript:void(0)">Contact<span>Let us contact</span></a></li>
+                                            <li *ngIf="!auth.isAuthenticated()" [class.active]="this.router.url == '/login'"><a href="/login"><span><i class="fa fa-sign-in"></i></span>Login</a></li>
+                                            <li *ngIf="!auth.isAuthenticated()" [class.active]="this.router.url == '/register'"><a href="/register"><span><i class="fa fa-registered"></i></span>Register</a></li>
+                                            <li *ngIf="auth.isAuthenticated()"><a href="javascript:void(0)" (click)="onLogout()"><span><i class="fa fa-sign-out"></i></span>Logout</a></li>
                                       </ul>
                                   </nav>
                               </div>
@@ -69,19 +69,19 @@
       <div class="mobile-menu">
           <nav>
               <ul>
-                  <li><a href="/">Home</a></li>
-                  <li><a href="javascript:void(0)">About</a></li>
-                  <li><a href="javascript:void(0)">Questions</a>
-                    <ul>
-                      <li><a href="/forum/">All Questions</a></li>
-                      <li><a href="/ask-question/">Ask Questions</a></li>
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="javascript:void(0)">About</a></li>								
+                <li [class.active]="this.router.url == '/forum/questions' || this.router.url == '/forum/ask-question'"><a href="javascript:void(0)">Questions</a>
+                  <ul>
+                    <li [class.active]="this.router.url == '/forum/questions'"><a href="/forum/questions"> <span><i class="fa fa-question-circle"></i></span> All Questions</a></li>														
+                    <li [class.active]="this.router.url == '/forum/ask-question'"><a href="/forum/ask-question"><span><i class="fa  fa-question-circle-o"></i></span> Ask Questions</a></li>
                     </ul>
-                  </li>
-                  <li><a href="javascript:void(0)">Blog</a></li>
-                  <li><a href="javascript:void(0)">Contact</a></li>
-                  <li *ngIf="!auth.isAuthenticated()"><a href="/login/"><span><i class="fa fa-sign-in"></i></span>Login</a></li>
-                  <li *ngIf="!auth.isAuthenticated()"><a href="/register/"><span><i class="fa fa-registered"></i></span>Register</a></li>
-                  <li *ngIf="auth.isAuthenticated()"><a href="javascript:void(0)" (click)="onLogout()"><span><i class="fa fa-sign-out"></i></span>Logout</a></li>
+                </li>
+                <li><a href="javascript:void(0)">Blog</a></li>
+                <li><a href="javascript:void(0)">Contact</a></li>
+                <li *ngIf="!auth.isAuthenticated()" [class.active]="this.router.url == '/login'"><a href="/login"><span><i class="fa fa-sign-in"></i></span> Login</a></li>
+                <li *ngIf="!auth.isAuthenticated()" [class.active]="this.router.url == '/register'"><a href="/register"><span><i class="fa fa-registered"></i></span> Register</a></li>
+                <li *ngIf="auth.isAuthenticated()"><a href="javascript:void(0)" (click)="onLogout()"><span><i class="fa fa-sign-out"></i></span> Logout</a></li>
               </ul>
           </nav>
       </div>
