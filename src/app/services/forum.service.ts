@@ -83,4 +83,14 @@ export class ForumService {
     this.createAuthorizationHeader(headers);
     return this.http.get(this.Url+`countVotes/${reply_id}`, {headers});
   }
+  getCurrentUser() {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.Url+`api`, {headers});
+  }
+  getprofile(id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.Url+`profileShow/${id}`, {headers});
+  }
 }

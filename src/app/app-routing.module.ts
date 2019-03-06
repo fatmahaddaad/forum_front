@@ -10,6 +10,7 @@ import { QuestionComponent } from './user/forum/question/question.component';
 import { AskComponent } from './user/forum/ask/ask.component';
 import { HomeComponent } from './home/home.component';
 import { QuestionsComponent } from './user/forum/questions/questions.component';
+import { ProfileComponent } from './user/profile/profile.component';
 
 const routes: Routes = [
   { path: '' , component: HomeComponent}, 
@@ -20,6 +21,11 @@ const routes: Routes = [
       { path: 'question/:id', component: QuestionComponent, canActivate: [AuthGuard]},
       { path: 'ask-question', component: AskComponent, canActivate: [AuthGuard]},
       { path: 'questions', component: QuestionsComponent},
+    ]
+  },
+  { path: 'user', component: UserComponent, canActivate: [AuthGuard],
+    children: [
+      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
     ]
   },
 ];
