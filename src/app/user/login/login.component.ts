@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       {
         localStorage.setItem('token', JSON.parse(res.text()).token);
         this.notifier.notify( 'success', 'User Authentificated Successfully' );
-        this.router.navigate([`/forum/`]);
+        this.router.navigate([`/forum/questions/`]);
       }, (err)=> {
         this.notifier.notify( 'error', err.statusText );
       });

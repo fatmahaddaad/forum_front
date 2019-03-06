@@ -2,22 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import * as moment from 'moment';
 
-import { ForumService } from '../../services/forum.service';
-import { AuthService } from '../../services/auth.service';
+import { ForumService } from '../../../services/forum.service';
 
 @Component({
-  selector: 'app-forum',
-  templateUrl: './forum.component.html',
-  styleUrls: ['./forum.component.css']
+  selector: 'app-questions',
+  templateUrl: './questions.component.html',
+  styleUrls: ['./questions.component.css']
 })
-export class ForumComponent implements OnInit {
+export class QuestionsComponent implements OnInit {
   topics: any;
   date : any[] = [];
   searchInput: string = "";
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
-    private router: Router,
-    public auth: AuthService) { }
+    private router: Router,) { }
 
   ngOnInit() {
     this.forumService.getTopics().subscribe(file => {
@@ -56,6 +54,7 @@ export class ForumComponent implements OnInit {
       }
    }
   show(id) {
-    this.router.navigate([`/question/${id}`], id);
+    this.router.navigate([`/forum/question/${id}`], id);
   }
+
 }

@@ -9,14 +9,19 @@ import { ForumComponent } from './user/forum/forum.component';
 import { QuestionComponent } from './user/forum/question/question.component';
 import { AskComponent } from './user/forum/ask/ask.component';
 import { HomeComponent } from './home/home.component';
+import { QuestionsComponent } from './user/forum/questions/questions.component';
 
 const routes: Routes = [
   { path: '' , component: HomeComponent}, 
   { path: 'login' , component: LoginComponent}, 
   { path: 'register', component: RegisterComponent},
-  { path: 'forum', component: ForumComponent},
-  { path: 'question/:id', component: QuestionComponent, canActivate: [AuthGuard]},
-  { path: 'ask-question', component: AskComponent, canActivate: [AuthGuard]},
+  { path: 'forum', component: ForumComponent,
+    children: [
+      { path: 'question/:id', component: QuestionComponent, canActivate: [AuthGuard]},
+      { path: 'ask-question', component: AskComponent, canActivate: [AuthGuard]},
+      { path: 'questions', component: QuestionsComponent},
+    ]
+  },
 ];
 
 @NgModule({

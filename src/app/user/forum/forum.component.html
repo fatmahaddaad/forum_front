@@ -1,110 +1,184 @@
-<div *ngIf="!topics" class="loader"></div>
-<!-- Start Questions Area -->
-<div *ngIf="topics" class="question-area themeix-ptb">
-    <div class="container">
-        <div class="row">
-            <!-- Start Question -->
-            <div class="col-md-9">
-                <div class="questions-wrapper">
-                    <div class="dwqa-container">
-                        <div class="dwqa-questions-archive">
-                            <form id="dwqa-search" class="dwqa-search">
-                                <input data-nonce="fc987a6f77" (input)="filterSearch($event)" type="text" placeholder="What do you want to know?" name="qs" class="ui-autocomplete-input" autocomplete="off" required>
-                            </form>
-                            <div class="dwqa-question-filter">
-                                <span>Filter:</span>
-                                <ul>
-                                    <li><a href="javascript:void(0)" (click)="filterStatus('All')" class="active">All</a></li>
-                                    <li><a href="javascript:void(0)" (click)="filterStatus('OPEN')">Open</a></li>
-                                    <li><a href="javascript:void(0)" (click)="filterStatus('RESOLVED')">Resolved</a></li>
-                                    <li><a href="javascript:void(0)" (click)="filterStatus('ANSWERED')">Answered</a></li>
-                                    <li><a href="javascript:void(0)" (click)="filterStatus('CLOSED')">Closed</a></li>
-                                    <li><a href="javascript:void(0)" (click)="filterStatus('UNANSWERED')">Unanswered</a></li>
-                                    <li><a href="javascript:void(0)" (click)="filterStatus('UNRESOLVED')">Unresolved</a></li>
-                                </ul>
-                                <label for="dwqa-sort-by" class="dwqa-sort-by">
-                                    <select [(ngModel)]="sort" id="dwqa-sort-by">
-                                        <option disabled="">Sort by</option>
-                                        <option value="views">Views</option>
-                                        <option value="replies">Answers</option>
-                                    </select>
-                                </label>
-                            </div>
-                            <div class="dwqa-questions-list">
-                                <div class="dwqa-question-item" *ngFor="let topic of topics | sortTopics: sort |paginate: { itemsPerPage: 5, currentPage: p, totalItems: topics.length }">
-                                    <header class="dwqa-question-title">
-                                        <a href="javascript:void(0)" title="{{ topic.subject }}" (click)="show(topic.id)">{{ topic.subject }}</a>
-                                    </header>
-                                    <div class="dwqa-question-meta">
-                                        <div  *ngFor="let statu of topic.status">
-                                            <span *ngIf="statu === 'ANSWERED' || statu === 'RESOLVED' || statu === 'CLOSED'" class="dwqa-status dwqa-status-{{ statu }}"  title="{{ statu }}">{{ statu }}</span>
-                                            <span *ngIf="statu === 'UNANSWERED' || statu === 'UNRESOLVED' || statu === 'OPEN'" class="dwqa-status dwqa-status-"  title=""></span>
-                                        </div>
-                                        <span><a href="javascript:void(0)">{{ topic.user.username }}</a> asked {{ date[topic.id] }}</span>
-                                        <span class="dwqa-question-category"> • <a href="javascript:void(0)" rel="tag">{{ topic.category.name }}</a></span>
-                                    </div>
-                                    <div class="dwqa-question-stats">
-                                        <span class="dwqa-views-count"><strong>{{ topic.views }}</strong>views</span>
-                                        <span class="dwqa-answers-count"><strong>{{ topic.replies.length }}</strong>answers</span>
-                                    </div>
+<!-- Start Header -->
+<header>
+    <!-- Start Mainmenu -->
+    <div class="menu-area navbar-fixed-top ">
+        <div class="container">
+            <div class="row">
+                <div class="mainmenu-wrapper">
+                    <!-- Start Header Logo -->
+                    <div class="col-xs-12 col-md-3">
+                        <div class="header-logo">
+                            <a href="index-2.html"><img src="../../assets/images/logo-f.png" alt="logo"></a>
+                        </div>
+                    </div>
+                    <!-- End Header Logo -->
+                    <!-- Start Navigation -->
+                    <div class="col-xs-12 col-md-9">
+                        <div class="mainmenu">
+                            <div class="navbar navbar-right">
+                                <div class="navbar-header visible-xs">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
                                 </div>
-                            </div>
-                            <div class="dwqa-questions-footer">
-                                    <pagination-controls  
-                                        (pageChange)="p = $event"
-                                        maxSize="9"
-                                        directionLinks="true"
-                                        autoHide="true"
-                                        responsive="true"
-                                        previousLabel="Previous"
-                                        nextLabel="Next"
-                                        screenReaderPaginationLabel="Pagination"
-                                        screenReaderPageLabel="page"
-                                        screenReaderCurrentLabel="You're on page">
-                                    </pagination-controls>
+                                <div class="collapse navbar-collapse top-menu">
+                                    <nav>
+                                        <ul class="nav navbar-nav">
+                                            <li class="active"><a href="/">Home<span>Get everything</span></a></li>
+                                            <li><a href="javascript:void(0)">About<span>Know about us</span></a></li>								
+                                            <li><a href="javascript:void(0)">Questions<span>Ask Your Question</span></a>
+                                                <ul class="dropdown">
+                                                    <li><a href="/forum/questions/"> <span><i class="fa fa-question-circle"></i></span>All Questions</a></li>														
+                                                    <li><a href="/forum/ask-question/"><span><i class="fa  fa-question-circle-o"></i></span>Ask Questions</a></li>
+                                                    </ul>
+                                                </li>
+                                            <li><a href="javascript:void(0)">Blog<span>All Blog Posts</span></a></li>
+                                            <li><a href="javascript:void(0)">Contact<span>Let us contact</span></a></li>
+                                            <li *ngIf="!auth.isAuthenticated()"><a href="/login/"><span><i class="fa fa-sign-in"></i></span>Login</a></li>
+                                            <li *ngIf="!auth.isAuthenticated()"><a href="/register/"><span><i class="fa fa-registered"></i></span>Register</a></li>
+                                            <li *ngIf="auth.isAuthenticated()"><a href="javascript:void(0)" (click)="onLogout()"><span><i class="fa fa-sign-out"></i></span>Logout</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <!-- End Navigation -->
                 </div>
             </div>
-            <!-- End Question -->
-            <!-- Start Blog Sidebar -->
-            <div class="col-md-3">
-                <div class="row">
-                    <div class="blog-sidebar">
-                        <div class="col-md-12 col-sm-6">
-                            <aside id="dwqa-categories-2" class="widget widget_categories dwqa_widget dwqa_widget_categories sidebar-list">
-                                <h2 class="widget-title">Topics Categories</h2>
-                                <ul>
-                                    <li><a href="javascript:void(0)">Introduction</a></li>
-                                    <li><a href="javascript:void(0)">Theme Options</a></li>
-                                    <li><a href="javascript:void(0)">Typography</a></li>
-                                    <li><a href="javascript:void(0)">Demo Install</a></li>
-                                    <li><a href="javascript:void(0)">Billing</a></li>
-                                    <li><a href="javascript:void(0)">Product Features</a></li>
-                                    <li><a href="javascript:void(0)">Customer Support</a></li>
-                                </ul>
-                            </aside>
-                        </div>
-                        <div class="col-md-12 col-sm-6">
-                            <aside class="widget dwqa-widget dwqa-popular-question">
-                                <div class="sidebar-popular-post dwqa-popular-questions sidebar-list">
-                                    <h2 class="widget-title">Popular Questions</h2>
-                                    <ul>
-                                        <li><a href="javascript:void(0)">How to pin a sticky question to the top of the questions page?</a> <span>asked by Kiki Ralp</span></li>
-                                        <li><a href="javascript:void(0)">How can I delete more than one post at a time?</a> <span>asked by Antawn Fiennes</span></li>
-                                        <li><a href="javascript:void(0)">How do I require a password if I forgot it?</a> <span>asked by Kiki Ralp</span></li>
-                                        <li><a href="javascript:void(0)">Where I can see or edit ratings I’ve posted?</a> <span>asked by Antawn Fiennes</span></li>
-                                        <li><a href="javascript:void(0)">Who can post ratings and reviews?</a> <span>asked by Antawn Fiennes</span></li>
-                                    </ul>
-                                </div>
-                            </aside>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Blog Sidebar -->
         </div>
     </div>
-</div>
-<!-- End  Questions Area -->
+    <!-- End Mainmenu -->
+    <!-- Start Mobile Menu Area -->
+    <div class="col-xs-12 visible-xs">
+        <div class="mobile-menu">
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="javascript:void(0)">About</a></li>
+                    <li><a href="javascript:void(0)">Questions</a>
+                        <ul>
+                        <li><a href="/forum/questions/">All Questions</a></li>
+                        <li><a href="/forum/ask-question/">Ask Questions</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)">Blog</a></li>
+                    <li><a href="javascript:void(0)">Contact</a></li>
+                    <li *ngIf="!auth.isAuthenticated()"><a href="/login/"><span><i class="fa fa-sign-in"></i></span>Login</a></li>
+                    <li *ngIf="!auth.isAuthenticated()"><a href="/register/"><span><i class="fa fa-registered"></i></span>Register</a></li>
+                    <li *ngIf="auth.isAuthenticated()"><a href="javascript:void(0)" (click)="onLogout()"><span><i class="fa fa-sign-out"></i></span>Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- End MObile Menu Area -->
+</header>
+<!-- End Header -->
+<section style="margin-bottom: 250px">
+    <router-outlet></router-outlet>
+</section>
+<!-- Start Footer Area -->
+<footer>
+    <div class="footer-area themeix-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="footer-wrapper">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="single-footer">
+                            <h3 class="footer-heading">About Us</h3>
+                            <div class="single-footer-text">
+                                <p>Vestibulum quis cursus mi, vitae mollis metus.Nulam eu lects gravida, bibendum enim in, vulputate erat. Vestibulum ullamcorper ornare magna</p>
+                            </div>
+                            <div class="social-links">
+                                <ul>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
+                                    <li class="fb-link"><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
+                                    <li class="gp-link"><a href="javascript:void(0)"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="single-footer">
+                            <h3 class="footer-heading">Recent Products</h3>
+                            <div class="footer-list">
+                                <ul>
+                                    <li><a target="_blank" href="https://themeforest.net/item/hostix-responsive-parallax-hosting-website-html5-template/19747783">Hostix</a></li>
+                                    <li><a target="_blank" href="https://themeforest.net/item/cleanhost-responsive-web-hosting-html5-template/19950579">Cleanhost</a></li>
+                                    <li><a target="_blank" href="https://themeforest.net/item/law-firm-lawyer-business-psd-template/19906137">Law Firm</a></li>
+                                    <li><a target="_blank" href="https://themeforest.net/item/etube-video-blog-site-psd-template/19821837">eTube</a></li>
+                                    <li><a href="javascript:void(0)">Documenter</a></li>
+                                    <li><a href="javascript:void(0)">Spa Care</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="single-footer">
+                            <h3 class="footer-heading">get support</h3>
+                            <div class="footer-list">
+                                <ul>
+                                    <li><a href="javascript:void(0)">Our Forum</a></li>
+                                    <li><a href="javascript:void(0)">Facebook Page</a></li>
+                                    <li><a href="javascript:void(0)">Live Chat</a></li>
+                                    <li><a href="javascript:void(0)">Toll Free Number</a></li>
+                                    <li><a href="javascript:void(0)">Support Agent</a></li>
+                                    <li><a href="javascript:void(0)">Tickets</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="single-footer">
+                            <h3 class="footer-heading">get support</h3>
+                            <p>Don’t miss our latest realeses and important updates</p>
+                            <div class="subscribe-form">
+                                <form action="#">
+                                    <input type="email" name="subscribe" id="subscribe" class="form-control" placeholder="Email" required>
+                                    <button type="submit" class="hover-bg">Go</button>
+                                </form>
+                                <span>We never do spam with you</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start Footer Bottom Area -->
+    <div class="footer-bottom-area themeix-pb">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="footer-bottom">
+                        <div class="footer-logo">
+                            <a href="javascript:void(0)"><img src="../../assets/images/footer-logo-f.png" alt="logo"></a>
+                        </div>
+                        <div class="footer-links">
+                            <ul>
+                                <li><a href="javascript:void(0)">Privacy Policy</a></li>
+                                <li><a href="javascript:void(0)">Refund Policy</a></li>
+                                <li><a href="javascript:void(0)">Disclaimer</a></li>
+                            </ul>
+                        </div>
+                        <div class="copyright-text">
+                            <p>&copy; 2019 - All rights reserved. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Footer Bottom Area -->
+    <!-- Start Scroll To Top -->
+    <div class="scroll-top">
+        <div class="scroll-icon">
+            <i class="fa fa-angle-up"></i>
+        </div>
+    </div>
+    <!-- End Scroll To Top -->
+</footer>
+<!-- End Footer Area -->
