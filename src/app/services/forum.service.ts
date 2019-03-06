@@ -93,4 +93,9 @@ export class ForumService {
     this.createAuthorizationHeader(headers);
     return this.http.get(this.Url+`profileShow/${id}`, {headers});
   }
+  editProfile(user, id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.put(this.Url+`editProfile/${id}`, user, {headers});
+  }
 }

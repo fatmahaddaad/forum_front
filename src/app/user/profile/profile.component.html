@@ -21,6 +21,7 @@
                                             </div>
                                         </div>
                                         <ul>
+                                            <li><span style="font-weight: bold">Birthdate : </span><span>{{birthdate}}</span></li> 
                                             <li><span style="font-weight: bold">Company : </span><span>{{currentUser.company }}</span></li> 
                                             <li><span style="font-weight: bold">Website : </span><span>{{currentUser.website }}</span></li>
                                             <li><span style="font-weight: bold">Email : </span><span>{{currentUser.email}}</span></li> 
@@ -29,6 +30,32 @@
                                 </ul>
                             </div>
                             <!-- End Single Comment -->
+                            <form [ngClass]="{hidden : MyClass}" id="edit_profile_form" class="dwqa-content-edit-form" method="POST" [formGroup]="updateForm" (submit)="onUpdate(currentUser.id)" >
+    
+                                <label for="fullname">Fullname</label>
+                                <input type="text" name="fullname" formControlName="fullname">
+                                
+                                <label for="email">Email</label>
+                                <input type="email" name="email" formControlName="email">
+                            
+                                <label for="username">Username</label>
+                                <input type="text" name="username" formControlName="username">
+                            
+                                <label for="company">Company</label>
+                                <input type="text" name="company" formControlName="company">
+                            
+                                <label for="birthdate">Birthdate</label>
+                                <input type="date" name="birthdate" formControlName="birthdate">
+                            
+                                <label for="website">Website</label>
+                                <input type="text" name="website" formControlName="website">
+                            
+                                <label for="bio">bio</label>
+                                <textarea name="bio" formControlName="bio" cols="30" rows="6"></textarea>
+                            
+                                <input id="wp-submit" type="submit" value="Submit" name="wp-submit" class="themeix-btn hover-bg">
+                              </form>
+                              <notifier-container></notifier-container>
                         </div>
                     </div>
                 </div>
