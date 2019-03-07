@@ -105,4 +105,14 @@ export class ForumService {
     formData.append('picture', fileToUpload, fileToUpload.name);
     return this.http.post(this.Url+`setProfilePicture/${id}`, formData, {headers});
   }
+  deleteTopic(topic) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.Url+`deleteTopic/${topic}` ,topic, {headers});
+  }
+  editTopic(topic, id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.put(this.Url+`editTopic/${id}`, topic, {headers});
+  }
 }

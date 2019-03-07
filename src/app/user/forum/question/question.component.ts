@@ -2,6 +2,8 @@ import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import * as moment from 'moment';
+import { FormBuilder, FormGroup, Validators, FormControl  } from '@angular/forms';
+
 import { ForumService } from '../../../services/forum.service';
 
 @Component({
@@ -24,6 +26,8 @@ export class QuestionComponent implements OnInit {
   replyDate : any[] = [];
   commentDate : any[] = [];
   categories: any;
+  currentUserId;
+  updateTopicForm: FormGroup;
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
     private router: Router,
@@ -34,12 +38,19 @@ export class QuestionComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.forumService.getCurrentUser().subscribe(file => { 
+      this.currentUserId = file.json().isLogged.id
+    });
     this.forumService.getCategories().subscribe(file => {
       this.categories = file.json();
     });
     let id = this.route.snapshot.paramMap.get('id');
     this.forumService.getRepliesByTopic(id).subscribe(file => {
       this.topic = file.json().topic;
+      this.updateTopicForm = new FormGroup({
+        subject: new FormControl(this.topic.subject, [Validators.required]),
+        content: new FormControl(this.topic.content, [Validators.required]),
+      });
       this.date = moment(this.topic.date, "YYYYMMDDTh:mm:ss").fromNow()
       this.replies = file.json().replies;
       this.scores = file.json().scores;
@@ -145,5 +156,26 @@ export class QuestionComponent implements OnInit {
       this.MyClass[i]= true;
     }
   }
-
+  deleteTopic(id) {
+    this.forumService.deleteTopic(id).subscribe(res =>{
+      this.notifier.notify( 'success', 'Topic Deleted Successfully' );
+      this.router.navigate(['/forum/questions']);
+    }, (err) => {
+      this.notifier.notify( 'error', 'An error occurred while deleting this Topic' );
+    });
+  }
+  onEditTopic(id){
+    console.log("ed "+id);
+    const topic = this.updateTopicForm.value;
+    console.log(topic);
+    console.log(id);
+    
+    this.forumService.editTopic(topic, id).subscribe(res =>
+    {
+      this.notifier.notify( 'success', 'Topic Updated Successfully' );
+      this.ngOnInit();
+    }, (err) => {
+      this.notifier.notify( 'error', 'An error occurred while updating this Topic' );
+    });
+  }
 }

@@ -2006,6 +2006,13 @@ a.comment-reply:hover {
 .dwqa-questions-list .dwqa-question-item .dwqa-question-meta {
     margin-bottom: 0;
 }
+.dwqa-question-actions {
+    float: right;
+}
+.dwqa-question-actions a{
+    color: #ffffff !important;
+    margin: 0 3px;
+}
 .dwqa-question-item .dwqa-status {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     border-radius: 36px;
@@ -2100,6 +2107,14 @@ a.comment-reply:hover {
     background-color: #71c668;
     color: #fff;
     font-size: 13px;
+}
+span.dwqa-answers-actions {
+    min-width: 40px !important;
+    padding: 0 !important;
+}
+.dwqa-answers-actions strong {
+    line-height: 50px !important;
+    color: #ffffff;
 }
 .dwqa-page-numbers,
 .ngx-pagination li {
