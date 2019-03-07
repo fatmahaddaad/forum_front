@@ -38,7 +38,7 @@
                                             <li><a href="javascript:void(0)">Blog<span>All Blog Posts</span></a></li>
                                             <li><a href="javascript:void(0)">Contact<span>Let us contact</span></a></li>
                                             <li *ngIf="!auth.isAuthenticated()" [class.active]="this.router.url == '/user/login'"><a href="/user/login"><span><i class="fa fa-sign-in"></i></span>Login</a></li>
-                                            <li *ngIf="!auth.isAuthenticated()" [class.active]="this.router.url == '/register'"><a href="/register"><span><i class="fa fa-registered"></i></span>Register</a></li>
+                                            <li *ngIf="!auth.isAuthenticated()" [class.active]="this.router.url == '/user/register'"><a href="/user/register"><span><i class="fa fa-registered"></i></span>Register</a></li>
                                             <li *ngIf="auth.isAuthenticated()"><a href="javascript:void(0)" (click)="onLogout()"><span><i class="fa fa-sign-out"></i></span>Logout</a></li>
                                         </ul>
                                     </nav>
@@ -68,7 +68,7 @@
                     <li><a href="javascript:void(0)">Blog</a></li>
                     <li><a href="javascript:void(0)">Contact</a></li>
                     <li *ngIf="!auth.isAuthenticated()" [class.active]="this.router.url == '/user/login'"><a href="/user/login"><span><i class="fa fa-sign-in"></i></span> Login</a></li>
-                    <li *ngIf="!auth.isAuthenticated()" [class.active]="this.router.url == '/register'"><a href="/register"><span><i class="fa fa-registered"></i></span> Register</a></li>
+                    <li *ngIf="!auth.isAuthenticated()" [class.active]="this.router.url == '/user/register'"><a href="/user/register"><span><i class="fa fa-registered"></i></span> Register</a></li>
                     <li *ngIf="auth.isAuthenticated()"><a href="javascript:void(0)" (click)="onLogout()"><span><i class="fa fa-sign-out"></i></span> Logout</a></li>
                 </ul>
             </nav>

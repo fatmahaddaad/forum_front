@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
     this.forumService.createUser(user).subscribe(res =>
     {
     this.notifier.notify( 'success', 'User account created successfully' );
-    this.router.navigate([`/login/`]);
+    this.router.navigate([`/user/login/`]);
     }, (err) => {
       console.log(err);
       this.notifier.notify( 'error', 'An error occurred while creating a new user' );
