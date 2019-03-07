@@ -58,4 +58,9 @@ export class ForumComponent implements OnInit {
   show(id) {
     this.router.navigate([`/question/${id}`], id);
   }
+  onLogout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('token');
+    this.router.navigate([`/user/login/`]);
+  }
 }

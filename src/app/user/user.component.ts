@@ -17,5 +17,9 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  onLogout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('token');
+    this.router.navigate([`/user/login/`]);
+  }
 }

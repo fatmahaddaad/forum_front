@@ -14,8 +14,6 @@ import { ProfileComponent } from './user/profile/profile.component';
 
 const routes: Routes = [
   { path: '' , component: HomeComponent}, 
-  { path: 'login' , component: LoginComponent}, 
-  { path: 'register', component: RegisterComponent},
   { path: 'forum', component: ForumComponent,
     children: [
       { path: 'question/:id', component: QuestionComponent, canActivate: [AuthGuard]},
@@ -23,9 +21,11 @@ const routes: Routes = [
       { path: 'questions', component: QuestionsComponent},
     ]
   },
-  { path: 'user', component: UserComponent, canActivate: [AuthGuard],
+  { path: 'user', component: UserComponent,
     children: [
       { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+      { path: 'login' , component: LoginComponent}, 
+      { path: 'register', component: RegisterComponent},
     ]
   },
 ];
