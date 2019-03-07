@@ -14,7 +14,8 @@
                                     <li>
                                         <div class="comment">
                                             <div class="comment-pic">
-                                              <img *ngIf="!imgURL" src="http://127.0.0.1:8000/images/profile/{{currentUser.image}}" alt="comment">
+                                              <img *ngIf="!imgURL && currentUser.image" src="http://127.0.0.1:8000/images/profile/{{currentUser.image}}" alt="comment">
+                                              <img *ngIf="!imgURL && !currentUser.image" src="../../../assets/images/avatar.jpg" alt="comment">
                                               <img *ngIf="imgURL" src="{{imgURL}}" alt="comment">
                                                 <form method="POST" (submit)="onUpdatePic()" >
                                                   <label for="update-pic" class="update-pic">
