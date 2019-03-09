@@ -97,6 +97,12 @@
                                   <li *ngFor="let category of categories"><a href="javascript:void()">{{ category.name }}</a></li>
                                 </ul>
                             </aside>
+                            <aside *ngIf="topics.length !== 0" id="dwqa-categories-3" class="widget widget_categories dwqa_widget dwqa_widget_categories sidebar-list">
+                                <h2 class="widget-title">My Topics</h2>
+                                <ul>
+                                  <li *ngFor="let topic of topics"><a href="javascript:void()" (click)="show(topic.id)">{{ topic.subject }}</a></li>
+                                </ul>
+                            </aside>
                         </div>
                     </div>
                 </div>

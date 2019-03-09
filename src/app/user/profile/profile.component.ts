@@ -6,6 +6,7 @@ import { NotifierService } from 'angular-notifier';
 
 import { ForumService } from '../../services/forum.service';
 import { AuthService } from '../../services/auth.service';
+import { log } from 'util';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -26,6 +27,7 @@ export class ProfileComponent implements OnInit {
   public imagePath;
   imgURL: any;
   fileToUpload: File = null;
+  topics: any;
   public message: string;
   private readonly notifier: NotifierService;
   constructor(private forumService: ForumService,
@@ -41,7 +43,9 @@ export class ProfileComponent implements OnInit {
     });
     this.forumService.getCurrentUser().subscribe(file => {
       this.forumService.getprofile(file.json().isLogged.id).subscribe(file => {
-        this.currentUser = file.json();
+        this.currentUser = file.json().user;
+        this.topics = file.json().topics;
+        console.log(this.topics);
         this.birthdate = moment(this.currentUser.birthdate, "YYYYMMDDTh:mm:ss").format('YYYY-MM-DD')
         console.log(this.currentUser);
         this.updateForm = new FormGroup({
@@ -112,5 +116,8 @@ export class ProfileComponent implements OnInit {
         
         this.notifier.notify( 'error', 'error' );
       });
+  }
+  show(id) {
+    this.router.navigate([`/forum/question/${id}`], id);
   }
 }
