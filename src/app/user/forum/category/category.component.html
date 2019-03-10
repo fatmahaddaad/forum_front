@@ -1,0 +1,90 @@
+<div *ngIf="!topics && !categories" class="loader"></div>
+<!-- Start Questions Area -->
+<div *ngIf="topics && categories" class="question-area themeix-ptb" style="margin-bottom: -250px">
+    <div class="container">
+        <div class="row">
+            <!-- Start Question -->
+            <div class="col-md-9">
+                <div class="questions-wrapper">
+                    <div class="dwqa-container">
+                        <div class="dwqa-questions-archive">
+                            <form id="dwqa-search" class="dwqa-search">
+                                <input data-nonce="fc987a6f77" (input)="filterSearch($event)" type="text" placeholder="What do you want to know?" name="qs" class="ui-autocomplete-input" autocomplete="off" required>
+                            </form>
+                            <div class="dwqa-question-filter">
+                                <span>Filter:</span>
+                                <ul>
+                                    <li><a href="javascript:void(0)" (click)="filterStatus('All')" class="active">All</a></li>
+                                    <li><a href="javascript:void(0)" (click)="filterStatus('OPEN')">Open</a></li>
+                                    <li><a href="javascript:void(0)" (click)="filterStatus('RESOLVED')">Resolved</a></li>
+                                    <li><a href="javascript:void(0)" (click)="filterStatus('ANSWERED')">Answered</a></li>
+                                    <li><a href="javascript:void(0)" (click)="filterStatus('CLOSED')">Closed</a></li>
+                                    <li><a href="javascript:void(0)" (click)="filterStatus('UNANSWERED')">Unanswered</a></li>
+                                    <li><a href="javascript:void(0)" (click)="filterStatus('UNRESOLVED')">Unresolved</a></li>
+                                </ul>
+                                <label for="dwqa-sort-by" class="dwqa-sort-by">
+                                    <select [(ngModel)]="sort" id="dwqa-sort-by">
+                                        <option disabled="">Sort by</option>
+                                        <option value="views">Views</option>
+                                        <option value="replies">Answers</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="dwqa-questions-list">
+                                <div class="dwqa-question-item" *ngFor="let topic of topics | sortTopics: sort |paginate: { itemsPerPage: 5, currentPage: p, totalItems: topics.length }">
+                                    <header class="dwqa-question-title">
+                                        <a href="javascript:void(0)" title="{{ topic.subject }}" (click)="show(topic.id)">{{ topic.subject }}</a>
+                                    </header>
+                                    <div class="dwqa-question-meta">
+                                        <div  *ngFor="let statu of topic.status">
+                                            <span *ngIf="statu === 'ANSWERED' || statu === 'RESOLVED' || statu === 'CLOSED'" class="dwqa-status dwqa-status-{{ statu }}"  title="{{ statu }}">{{ statu }}</span>
+                                            <span *ngIf="statu === 'UNANSWERED' || statu === 'UNRESOLVED' || statu === 'OPEN'" class="dwqa-status dwqa-status-"  title=""></span>
+                                        </div>
+                                        <span><a href="javascript:void(0)">{{ topic.user.username }}</a> asked {{ topicDate[topic.id] }}</span>
+                                        <span class="dwqa-question-category"> • <a href="javascript:void(0)" (click)="showCategory(topic.category.id)" rel="tag">{{ topic.category.name }}</a></span>
+                                    </div>
+                                    <div class="dwqa-question-stats">
+                                        <span class="dwqa-views-count"><strong>{{ topic.views }}</strong>views</span>
+                                        <span class="dwqa-answers-count"><strong>{{ topic.replies.length }}</strong>answers</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dwqa-questions-footer">
+                                    <pagination-controls  
+                                        (pageChange)="p = $event"
+                                        maxSize="9"
+                                        directionLinks="true"
+                                        autoHide="true"
+                                        responsive="true"
+                                        previousLabel="Previous"
+                                        nextLabel="Next"
+                                        screenReaderPaginationLabel="Pagination"
+                                        screenReaderPageLabel="page"
+                                        screenReaderCurrentLabel="You're on page">
+                                    </pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Question -->
+            <!-- Start Blog Sidebar -->
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="blog-sidebar">
+                        <div class="col-md-12 col-sm-6">
+                            <aside id="dwqa-categories-2" class="widget widget_categories dwqa_widget dwqa_widget_categories sidebar-list">
+                                <h2 class="widget-title">Topics Categories</h2>
+                                <ul>
+                                    <li *ngFor="let category of categories"><a href="javascript:void()">{{ category.name }}</a></li>
+                                </ul>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Blog Sidebar -->
+        </div>
+    </div>
+</div>
+<!-- End  Questions Area -->

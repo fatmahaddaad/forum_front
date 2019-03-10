@@ -115,4 +115,9 @@ export class ForumService {
     this.createAuthorizationHeader(headers);
     return this.http.put(this.Url+`editTopic/${id}`, topic, {headers});
   }
+  getcategory(id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.Url+`topicsByCategory/${id}`, {headers});
+  }
 }
