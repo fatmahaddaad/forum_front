@@ -57,7 +57,10 @@
                                             </a>
                                             answered {{ replyDate[reply.id] }}
                                         </span> 
-                                        <span class="dwqa-answer-actions"></span>
+                                        <span *ngIf="reply.user.id === currentUserId" class="dwqa-answer-actions">
+                                            <a class="label label-info" href="javascript:void()" (click)="replyFormToggle(reply.id)" data-toggle="modal" data-target="#editReplyModal">edit</a>
+                                            <a class="label label-danger" href="javascript:void()" (click)="replyDeleteModal(reply.id)"  data-toggle="modal" data-target="#deleteReplyModal">delete</a>
+                                        </span>
                                     </div>
                                     <div class="dwqa-answer-content">
                                         <p>{{ reply.content }}</p>
@@ -163,6 +166,48 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     <input id="wp-submit" (click)="deleteTopic(topic.id)" data-dismiss="modal" type="submit" value="Confirm" name="wp-submit" class="btn btn-primary">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="editReplyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Update your Reply</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="dwqa-content-edit-form" method="POST" [formGroup]="updateReplyForm" (submit)="onEditReply(replyID)" >
+                        
+                        <label for="content">Question Details</label>
+                        <textarea cols="30" rows="10" name="content" formControlName="content"></textarea>
+        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <input id="wp-submit" type="submit" value="Submit" data-dismiss="editReplyModal" name="wp-submit" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="deleteReplyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="text-align: center;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Delete your Reply</h4>
+                </div>
+                <div class="modal-body">
+                    <div><i class="fa fa-warning btn btn-danger"></i></div>
+                    Are you sure you want to delete this Reply?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <input id="wp-submit" (click)="deleteReply(replyID)" data-dismiss="modal" type="submit" value="Confirm" name="wp-submit" class="btn btn-primary">
                 </div>
             </div>
         </div>

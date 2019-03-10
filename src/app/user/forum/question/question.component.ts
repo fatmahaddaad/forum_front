@@ -28,6 +28,8 @@ export class QuestionComponent implements OnInit {
   categories: any;
   currentUserId;
   updateTopicForm: FormGroup;
+  updateReplyForm: FormGroup;
+  replyID
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
     private router: Router,
@@ -38,6 +40,9 @@ export class QuestionComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.updateReplyForm = new FormGroup({
+      content: new FormControl("", [Validators.required]),
+    });
     this.forumService.getCurrentUser().subscribe(file => { 
       this.currentUserId = file.json().isLogged.id
     });
@@ -156,6 +161,14 @@ export class QuestionComponent implements OnInit {
       this.MyClass[i]= true;
     }
   }
+  replyFormToggle(id) {
+    this.replyID = id;
+    this.forumService.getReply(id).subscribe(file => {
+      this.updateReplyForm = new FormGroup({
+        content: new FormControl(file.json().content, [Validators.required]),
+      });
+    })
+  }
   deleteTopic(id) {
     this.forumService.deleteTopic(id).subscribe(res =>{
       this.notifier.notify( 'success', 'Topic Deleted Successfully' );
@@ -163,6 +176,18 @@ export class QuestionComponent implements OnInit {
     }, (err) => {
       this.notifier.notify( 'error', 'An error occurred while deleting this Topic' );
     });
+  }
+  replyDeleteModal(id)
+  {
+    this.replyID = id;
+  }
+  deleteReply(id) {
+    this.forumService.deleteReply(id).subscribe(res => {
+      this.notifier.notify('success', 'Reply Deleted Successfully');
+      this.ngOnInit();
+    }, (err) => {
+      this.notifier.notify('error', 'An error occured while deleting this reply')
+    })
   }
   onEditTopic(id){
     console.log("ed "+id);
@@ -176,6 +201,20 @@ export class QuestionComponent implements OnInit {
       this.ngOnInit();
     }, (err) => {
       this.notifier.notify( 'error', 'An error occurred while updating this Topic' );
+    });
+  }
+  onEditReply(id){
+    console.log("ed "+id);
+    const reply = this.updateReplyForm.value;
+    console.log(reply);
+    console.log(id);
+    
+    this.forumService.editReply(reply, id).subscribe(res =>
+    {
+      this.notifier.notify( 'success', 'Reply Updated Successfully' );
+      this.ngOnInit();
+    }, (err) => {
+      this.notifier.notify( 'error', 'An error occurred while updating this Reply' );
     });
   }
 }
