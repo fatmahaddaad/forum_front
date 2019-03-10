@@ -2357,6 +2357,9 @@ span.dwqa-answers-actions {
 .dwqa-answer-vote .dwqa-vote-down:hover {
     border-color: #f26c4f transparent transparent;
 }
+.dwqa-answer-actions .label {
+    margin: 0 2px !important;
+}
 .dwqa-pick-best-answer {
     height: 32px;
     left: 6px;
