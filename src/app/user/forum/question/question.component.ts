@@ -255,4 +255,30 @@ export class QuestionComponent implements OnInit {
       this.notifier.notify( 'error', 'An error occurred while updating this Comment' );
     });
   }
+  vote_up(id) {
+    const vote ={
+      up : "up",
+      down : "",
+      reply_id : id
+    }
+    this.forumService.addVote(vote).subscribe(res => {
+      this.notifier.notify("success", "Vote added")
+      this.ngOnInit();
+    }, (err) => {
+      this.notifier.notify("error", err.json().message)
+    })
+  }
+  vote_down(id) {
+    const vote ={
+      up : "",
+      down : "down",
+      reply_id : id
+    }
+    this.forumService.addVote(vote).subscribe(res => {
+      this.notifier.notify("success", "Vote added")
+      this.ngOnInit();
+    }, (err) => {
+      this.notifier.notify("error", err.json().message)
+    })
+  }
 }

@@ -44,8 +44,8 @@
                                 <div *ngFor="let reply of replies;let index = index;" class="dwqa-answer-item dwqa-best-answer" id="answer-{{ reply.id }}">
                                     <div class="dwqa-answer-vote">
                                         <span class="dwqa-vote-count">{{countVote[reply.id]}}</span>
-                                        <a class="dwqa-vote dwqa-vote-up" href="#">Vote Up</a>
-                                        <a class="dwqa-vote dwqa-vote-down" href="#">Vote Down</a>
+                                        <a class="dwqa-vote dwqa-vote-up" href="javascript:void()" (click)="vote_up(reply.id)">Vote Up</a>
+                                        <a class="dwqa-vote dwqa-vote-down" href="javascript:void()" (click)="vote_down(reply.id)">Vote Down</a>
                                     </div>
                                     <span *ngIf="reply.is_correct" class="dwqa-pick-best-answer">Best Answer</span>
                                     <div class="dwqa-answer-meta">

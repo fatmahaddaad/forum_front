@@ -150,4 +150,13 @@ export class ForumService {
     this.createAuthorizationHeader(headers);
     return this.http.post(this.Url+`deleteComment/${comment}` ,comment, {headers});
   }
+  addVote(vote) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    const formData: FormData = new FormData();
+    formData.append('up', vote.up);
+    formData.append('down', vote.down);
+    formData.append('reply_id', vote.reply_id);
+    return this.http.post(this.Url+"addVote", formData, {headers});
+  }
 }
