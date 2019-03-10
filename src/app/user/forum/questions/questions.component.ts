@@ -60,5 +60,7 @@ export class QuestionsComponent implements OnInit {
   show(id) {
     this.router.navigate([`/forum/question/${id}`], id);
   }
-
+  showCategory(id) {
+    this.router.navigate([`/forum/category/${id}`], id);
+  }
 }
