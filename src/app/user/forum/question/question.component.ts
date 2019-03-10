@@ -30,6 +30,8 @@ export class QuestionComponent implements OnInit {
   updateTopicForm: FormGroup;
   updateReplyForm: FormGroup;
   replyID
+  updateCommentForm: FormGroup;
+  commentID
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
     private router: Router,
@@ -41,6 +43,9 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit() {
     this.updateReplyForm = new FormGroup({
+      content: new FormControl("", [Validators.required]),
+    });
+    this.updateCommentForm = new FormGroup({
       content: new FormControl("", [Validators.required]),
     });
     this.forumService.getCurrentUser().subscribe(file => { 
@@ -215,6 +220,39 @@ export class QuestionComponent implements OnInit {
       this.ngOnInit();
     }, (err) => {
       this.notifier.notify( 'error', 'An error occurred while updating this Reply' );
+    });
+  }
+  commentModalToggle(id) {
+    this.commentID = id;
+    this.forumService.getComment(id).subscribe(file => {
+      this.updateCommentForm = new FormGroup({
+        content: new FormControl(file.json().content, [Validators.required]),
+      });
+    })
+  }
+  commentDeleteModal(id)
+  {
+    this.commentID = id;
+  }
+  deleteComment(id) {
+    this.forumService.deleteComment(id).subscribe(res => {
+      this.notifier.notify('success', 'Comment Deleted Successfully');
+      this.ngOnInit();
+    }, (err) => {
+      this.notifier.notify('error', 'An error occured while deleting this Comment')
+    })
+  }
+  onEditComment(id){
+    console.log("ed "+id);
+    const comment = this.updateCommentForm.value;
+    console.log(comment);
+    
+    this.forumService.editComment(comment, id).subscribe(res =>
+    {
+      this.notifier.notify( 'success', 'Comment Updated Successfully' );
+      this.ngOnInit();
+    }, (err) => {
+      this.notifier.notify( 'error', 'An error occurred while updating this Comment' );
     });
   }
 }

@@ -135,4 +135,19 @@ export class ForumService {
     this.createAuthorizationHeader(headers);
     return this.http.post(this.Url+`deleteReply/${reply}` ,reply, {headers});
   }
+  getComment(id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.Url+`comment/${id}`, {headers});
+  }
+  editComment(comment, id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.put(this.Url+`editComment/${id}`, comment, {headers});
+  }
+  deleteComment(comment) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.Url+`deleteComment/${comment}` ,comment, {headers});
+  }
 }
