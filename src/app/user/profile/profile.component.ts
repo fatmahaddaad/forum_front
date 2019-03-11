@@ -67,7 +67,7 @@ export class ProfileComponent implements OnInit {
     {
       this.notifier.notify( 'success', 'Profile Updated Successfully' );
       this.forumService.getprofile(id).subscribe(file => { 
-        this.currentUser = file.json();
+        this.currentUser = file.json().user;
         this.birthdate = moment(this.currentUser.birthdate, "YYYYMMDDTh:mm:ss").format('YYYY-MM-DD')
       });
     }, (err) => {
