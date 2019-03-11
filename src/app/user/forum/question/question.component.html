@@ -48,7 +48,7 @@
                                         <a class="dwqa-vote dwqa-vote-down" href="javascript:void()" (click)="vote_down(reply.id)">Vote Down</a>
                                     </div>
                                     <span *ngIf="reply.is_correct" class="dwqa-pick-best-answer">Best Answer</span>
-                                    <span *ngIf="!reply.is_correct" class="dwqa-set-best-answer"><a href="avascript:void()" (click)="setBestAnswer(reply.id)">set best</a></span>
+                                    <span *ngIf="!reply.is_correct && reply.user.id !== currentUserId && topic.user.id === currentUserId" class="dwqa-set-best-answer"><a href="avascript:void()" (click)="setBestAnswer(reply.id)">set best</a></span>
                                     <div class="dwqa-answer-meta">
                                         <span>
                                             <a href="#">
