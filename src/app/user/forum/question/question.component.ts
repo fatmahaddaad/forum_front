@@ -281,4 +281,7 @@ export class QuestionComponent implements OnInit {
       this.notifier.notify("error", err.json().message)
     })
   }
+  showCategory(id) {
+    this.router.navigate([`/forum/category/${id}`], id);
+  }
 }

@@ -42,4 +42,7 @@ export class AskComponent implements OnInit {
       this.notifier.notify( 'error', 'An error occurred while adding a new question: ' + err.statusText );
     });
   }
+  showCategory(id) {
+    this.router.navigate([`/forum/category/${id}`], id);
+  }
 }

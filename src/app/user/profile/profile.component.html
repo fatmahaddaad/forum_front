@@ -94,7 +94,7 @@
                             <aside id="dwqa-categories-2" class="widget widget_categories dwqa_widget dwqa_widget_categories sidebar-list">
                                 <h2 class="widget-title">Topics Categories</h2>
                                 <ul>
-                                  <li *ngFor="let category of categories"><a href="javascript:void()">{{ category.name }}</a></li>
+                                  <li *ngFor="let category of categories"><a href="javascript:void()" (click)="showCategory(topic.category.id)">{{ category.name }}</a></li>
                                 </ul>
                             </aside>
                             <aside *ngIf="topics.length !== 0" id="dwqa-categories-3" class="widget widget_categories dwqa_widget dwqa_widget_categories sidebar-list">
