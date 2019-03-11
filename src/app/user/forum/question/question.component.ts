@@ -284,4 +284,15 @@ export class QuestionComponent implements OnInit {
   showCategory(id) {
     this.router.navigate([`/forum/category/${id}`], id);
   }
+  setBestAnswer(id) {
+    const reply ={
+      is_correct : true
+    }
+    this.forumService.setBestAnswer(reply, id).subscribe(res => {
+      this.notifier.notify("success", "Reply set to correct")
+      this.ngOnInit();
+    }, (err) => {
+      this.notifier.notify("error", err.json().message)
+    })
+  }
 }

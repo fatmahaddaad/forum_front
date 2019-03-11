@@ -48,6 +48,7 @@
                                         <a class="dwqa-vote dwqa-vote-down" href="javascript:void()" (click)="vote_down(reply.id)">Vote Down</a>
                                     </div>
                                     <span *ngIf="reply.is_correct" class="dwqa-pick-best-answer">Best Answer</span>
+                                    <span *ngIf="!reply.is_correct" class="dwqa-set-best-answer"><a href="avascript:void()" (click)="setBestAnswer(reply.id)">set best</a></span>
                                     <div class="dwqa-answer-meta">
                                         <span>
                                             <a href="#">
@@ -83,7 +84,7 @@
                                                 <p [froalaView]="comment.content"></p>
                                             </div>
                                             <!-- #comment-## -->
-                                            <a (click)="commentFormToggle(reply.id)">add a comment</a>
+                                            <a (click)="commentFormToggle(reply.id)" class="add-comment">add a comment</a>
                                             <form [ngClass]="{hidden : MyClass[reply.id]}" id="comment_form_{{reply.id}}" method="POST" (submit)="onAddComment(reply.id, index)" >
                                                 <div class="form-group">
                                                     <label for="comment_content">Comment Details</label>

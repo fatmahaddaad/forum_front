@@ -159,4 +159,9 @@ export class ForumService {
     formData.append('reply_id', vote.reply_id);
     return this.http.post(this.Url+"addVote", formData, {headers});
   }
+  setBestAnswer(reply, id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.put(this.Url+`setCorrectAnswer/${id}`, reply, {headers});
+  }
 }

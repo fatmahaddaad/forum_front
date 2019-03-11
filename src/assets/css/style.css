@@ -2271,7 +2271,7 @@ span.dwqa-answers-actions {
 .dwqa-comments-list .dwqa-comment-meta {
     font-size: small;
 }
-.dwqa-comments-list a {
+.dwqa-comments-list a.add-comment {
     background-color: #333333;
     padding: 5px 15px;
     border: 1px solid #333333;
@@ -2281,7 +2281,7 @@ span.dwqa-answers-actions {
     display: inline-block;
     cursor: pointer;
 }
-.dwqa-comments-list a:hover {
+.dwqa-comments-list a.add-comment:hover {
     background-color: #fff;
     color: #333;
 }
@@ -2405,6 +2405,43 @@ span.dwqa-answers-actions {
     -webkit-transform: rotate(45deg);
             transform: rotate(45deg);
     width: 15px;
+}
+.dwqa-set-best-answer {
+    height: 32px;
+    left: 6px;
+    position: absolute;
+    top: 180px;
+    width: 32px;
+}
+.dwqa-set-best-answer a {
+    text-indent: -9999px;
+    height: 32px;
+    position: absolute;
+    width: 32px;
+}
+.dwqa-set-best-answer a:after {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #ddd;
+    -o-border-image: none;
+    border-image: none;
+    border-style: solid;
+    border-width: 0 5px 5px 0;
+    box-sizing: border-box;
+    content: "";
+    display: block;
+    height: 25px;
+    left: 7px;
+    position: absolute;
+    top: 0px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    width: 15px;
+}
+.dwqa-set-best-answer:hover a:after {
+    border-color: #333333;
 }
 .dwqa-answer-item .dwqa-answer-meta {
     position: absolute;
