@@ -1,2 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("../node_modules/angular-notifier/styles.css");
+@import url("../node_modules/froala-editor/css/froala_editor.pkgd.min.css");
+@import url("../node_modules/froala-editor/css/froala_style.min.css");
+@import url("../node_modules/font-awesome/css/font-awesome.min.css");

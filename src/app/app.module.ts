@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { NotifierModule } from 'angular-notifier';
 import { JwtModule } from '@auth0/angular-jwt';
 import {NgxPaginationModule} from 'ngx-pagination';
+import "froala-editor/js/froala_editor.pkgd.min.js";
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -60,7 +62,9 @@ export function tokenGetter() {
       }
     }),
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FroalaEditorModule.forRoot(), 
+    FroalaViewModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
