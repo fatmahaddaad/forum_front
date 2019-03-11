@@ -30,7 +30,7 @@
                                 </span>
                             </div>
                             <div class="dwqa-question-content">
-                                <p>{{ topic.content }}</p>
+                                <p [froalaView]="topic.content"></p>
                             </div>
                             <footer class="dwqa-question-footer">
                                 <div class="dwqa-question-meta"></div>
@@ -63,7 +63,7 @@
                                         </span>
                                     </div>
                                     <div class="dwqa-answer-content">
-                                        <p>{{ reply.content }}</p>
+                                        <p [froalaView]="reply.content"></p>
                                     </div>
                                     <div class="dwqa-comments">
                                         <div class="dwqa-comments-list">
@@ -80,14 +80,14 @@
                                                         <a class="label label-danger" href="javascript:void()" (click)="commentDeleteModal(comment.id)"  data-toggle="modal" data-target="#deleteCommentModal">delete</a>
                                                     </div>
                                                 </div>
-                                                <p>{{ comment.content }}</p>
+                                                <p [froalaView]="comment.content"></p>
                                             </div>
                                             <!-- #comment-## -->
                                             <a (click)="commentFormToggle(reply.id)">add a comment</a>
                                             <form [ngClass]="{hidden : MyClass[reply.id]}" id="comment_form_{{reply.id}}" method="POST" (submit)="onAddComment(reply.id, index)" >
                                                 <div class="form-group">
                                                     <label for="comment_content">Comment Details</label>
-                                                    <textarea class="form-control" name="comment_content{{index}}" [(ngModel)]="comment_content[index]"></textarea>
+                                                    <textarea class="form-control" name="comment_content{{index}}" [(ngModel)]="comment_content[index]" [froalaEditor]></textarea>
                                                 </div>
                                                 <div>
                                                     <input type="submit" value="submit" class="btn btn-default" />
@@ -101,7 +101,7 @@
                             <form method="POST" (submit)="onAddReply()" >
                                 <div class="form-group">
                                     <label for="content">Reply Details</label>
-                                    <textarea class="form-control" name="content" [(ngModel)]="content"></textarea>
+                                    <textarea class="form-control" name="content" [(ngModel)]="content" [froalaEditor]></textarea>
                                 </div>
                                 <div>
                                     <input type="submit" value="submit" class="btn btn-default" />
@@ -143,7 +143,7 @@
                         <input type="text" name="subject" formControlName="subject">
                         
                         <label for="content">Question Details</label>
-                        <textarea cols="30" rows="10" name="content" formControlName="content"></textarea>
+                        <textarea cols="30" rows="10" name="content" formControlName="content" [froalaEditor]></textarea>
         
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -185,7 +185,7 @@
                     <form class="dwqa-content-edit-form" method="POST" [formGroup]="updateReplyForm" (submit)="onEditReply(replyID)" >
                         
                         <label for="content">Reply Details</label>
-                        <textarea cols="30" rows="10" name="content" formControlName="content"></textarea>
+                        <textarea cols="30" rows="10" name="content" formControlName="content" [froalaEditor]></textarea>
         
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -227,7 +227,7 @@
                     <form class="dwqa-content-edit-form" method="POST" [formGroup]="updateCommentForm" (submit)="onEditComment(commentID)" >
                         
                         <label for="content">Comment Details</label>
-                        <textarea cols="30" rows="10" name="content" formControlName="content"></textarea>
+                        <textarea cols="30" rows="10" name="content" formControlName="content" [froalaEditor]></textarea>
         
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

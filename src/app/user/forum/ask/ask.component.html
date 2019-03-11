@@ -13,8 +13,9 @@
                         <input type="text" name="subject" [(ngModel)]="subject">
                         
                         <label for="content">Question Details</label>
-                        <textarea cols="30" rows="10" name="content" [(ngModel)]="content"></textarea>
-
+                        <textarea cols="30" rows="20" name="content" [(ngModel)]="content" [froalaEditor] [(froalaModel)]="editorContent"></textarea>
+                        <!-- preview -->
+                        <!-- <p [froalaView]="editorContent"></p> -->
                         <label for="category_id">Category</label>
                         <select  name="question-category" id="question-category" class="postform" [(ngModel)]="category_id">
                           <option *ngFor="let category of categories" value="{{ category.id }}">{{ category.name }}</option>
