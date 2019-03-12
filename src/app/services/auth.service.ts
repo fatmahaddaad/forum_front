@@ -14,7 +14,7 @@ export class AuthService {
     // true or false
     if (token) {
       if (allowedRoles == null || allowedRoles.length === 0) {
-        return true;
+        return !this.jwtHelper.isTokenExpired(token);
       }
       const decodeToken = this.jwtHelper.decodeToken(token);
       return !this.jwtHelper.isTokenExpired(token) && !allowedRoles.includes(decodeToken['roles']);
