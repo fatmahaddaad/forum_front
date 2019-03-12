@@ -17,15 +17,15 @@ const routes: Routes = [
   { path: '' , component: HomeComponent}, 
   { path: 'forum', component: ForumComponent,
     children: [
-      { path: 'question/:id', component: QuestionComponent, canActivate: [AuthGuard]},
-      { path: 'ask-question', component: AskComponent, canActivate: [AuthGuard]},
+      { path: 'question/:id', component: QuestionComponent, canActivate: [AuthGuard], data: { allowedRoles: ['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN']} },
+      { path: 'ask-question', component: AskComponent, canActivate: [AuthGuard], data: { allowedRoles: ['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN']} },
       { path: 'questions', component: QuestionsComponent},
       { path: 'category/:id', component: CategoryComponent},
     ]
   },
   { path: 'user', component: UserComponent,
     children: [
-      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], data: { allowedRoles: ['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN']} },
       { path: 'login' , component: LoginComponent}, 
       { path: 'register', component: RegisterComponent},
     ]
