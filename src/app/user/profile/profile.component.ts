@@ -6,7 +6,6 @@ import { NotifierService } from 'angular-notifier';
 
 import { ForumService } from '../../services/forum.service';
 import { AuthService } from '../../services/auth.service';
-import { log } from 'util';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',

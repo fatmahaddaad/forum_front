@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { QuestionsComponent } from './user/forum/questions/questions.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { CategoryComponent } from './user/forum/category/category.component';
+import { UsersComponent } from './user/users/users.component';
 
 const routes: Routes = [
   { path: '' , component: HomeComponent}, 
@@ -28,6 +29,7 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], data: { allowedRoles: ['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN']} },
       { path: 'login' , component: LoginComponent}, 
       { path: 'register', component: RegisterComponent},
+      { path: 'users', component: UsersComponent, canActivate: [AuthGuard], data: { allowedRoles: ['ROLE_MODERATOR', 'ROLE_ADMIN']} },
     ]
   },
 ];

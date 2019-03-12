@@ -1,0 +1,79 @@
+<notifier-container></notifier-container>
+<div *ngIf="!data && !categories" class="loader"></div>
+<!-- Start Questions Area -->
+<div *ngIf="data && categories" class="question-area themeix-ptb" style="margin-bottom: -250px">
+    <div class="container">
+        <div class="row">
+            <!-- Start Question -->
+            <div class="col-md-9">
+                <div class="questions-wrapper">
+                    <div class="dwqa-container">
+                        <div class="dwqa-questions-archive">
+                            <div class="dwqa-questions-list">
+                                <div class="dwqa-question-item" *ngFor="let element of data |paginate: { itemsPerPage: 5, currentPage: p, totalItems: data.length }">
+                                    <header class="dwqa-question-title">
+                                        <a href="javascript:void(0)" title="{{ element.user.username }}" (click)="show(element.user.id)">{{ element.user.username }}<span *ngIf="element.user.fullname"> ( {{element.user.fullname}} )</span></a>
+                                    </header>
+                                    <div class="dwqa-question-meta">
+                                    <span style="height: 36px;
+                                    left: 15px;
+                                    margin-top: -18px;
+                                    padding: 0;
+                                    position: absolute;
+                                    text-indent: -9999px;
+                                    top: 50%;
+                                    width: 36px;">
+                                      <img class="avatar avatar-48 photo" *ngIf="element.user.image" style="width: 36px; height: 36px; object-fit: cover;" alt="authors" src="http://127.0.0.1:8000/images/profile/{{ element.user.image }}" />
+                                      <img class="avatar avatar-48 photo" *ngIf="!element.user.image" style="width: 36px; height: 36px; object-fit: cover;" alt="authors" src="http://127.0.0.1:8000/images/profile/author2.png" />
+                                    </span>
+                                        <span> became a member {{ date[element.user.id] }}</span>
+                                        <span class="dwqa-question-category"> • {{ arrayRoles[element.user.id] }}</span>
+                                        <span style="position: initial;display: inline-block;" *ngIf="element.user.is_active" class="block-user"><a href="javascript:void()" title="Block user" (click)="blockUser(element.user.id)"><i class="fa fa-times-circle"></i></a></span>
+                                        <span style="position: initial;display: inline-block;" *ngIf="!element.user.is_active" class="activate-user"><a href="javascript:void()" title="Activate user" (click)="activateUser(element.user.id)"><i class="fa fa-check-circle"></i></a></span>
+                                    </div>
+                                    <div class="dwqa-question-stats">
+                                        <span class="dwqa-views-count"><strong>{{ element.topics }}</strong>topics</span>
+                                        <span class="dwqa-answers-count"><strong>{{ element.replies }}</strong>answers</span>
+                                        <span class="dwqa-votes-count"><strong>{{ element.comments }}</strong>comments</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dwqa-questions-footer">
+                                    <pagination-controls  
+                                        (pageChange)="p = $event"
+                                        maxSize="9"
+                                        directionLinks="true"
+                                        autoHide="true"
+                                        responsive="true"
+                                        previousLabel="Previous"
+                                        nextLabel="Next"
+                                        screenReaderPaginationLabel="Pagination"
+                                        screenReaderPageLabel="page"
+                                        screenReaderCurrentLabel="You're on page">
+                                    </pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Question -->
+            <!-- Start Blog Sidebar -->
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="blog-sidebar">
+                        <div class="col-md-12 col-sm-6">
+                            <aside id="dwqa-categories-2" class="widget widget_categories dwqa_widget dwqa_widget_categories sidebar-list">
+                                <h2 class="widget-title">Topics Categories</h2>
+                                <ul>
+                                    <li *ngFor="let category of categories"><a href="javascript:void()" (click)="showCategory(category.id)">{{ category.name }}</a></li>
+                                </ul>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Blog Sidebar -->
+        </div>
+    </div>
+</div>
+<!-- End  Questions Area -->

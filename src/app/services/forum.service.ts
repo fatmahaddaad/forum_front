@@ -174,4 +174,9 @@ export class ForumService {
     this.createAuthorizationHeader(headers);
     return this.http.put(this.Url+`activateUser/${id}`, user, {headers});
   }
+  getUsers() {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.Url+`users`, {headers});
+  }
 }
