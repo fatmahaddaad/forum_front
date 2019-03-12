@@ -5,7 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root'
 })
 export class AuthService {
-
+  roles: any[] =[]
   constructor(public jwtHelper: JwtHelperService) { }
   public isAuthenticated(allowedRoles: string[]): boolean {
 
@@ -17,7 +17,11 @@ export class AuthService {
         return !this.jwtHelper.isTokenExpired(token);
       }
       const decodeToken = this.jwtHelper.decodeToken(token);
-      return !this.jwtHelper.isTokenExpired(token) && !allowedRoles.includes(decodeToken['roles']);
+      for (let i = 0; i < decodeToken['roles'].length; i++) {
+        const element = decodeToken['roles'][i];
+        this.roles.push(allowedRoles.includes(element))
+      }
+      return !this.jwtHelper.isTokenExpired(token) && this.roles.includes(true);
     }
   }
 }
