@@ -24,7 +24,9 @@
                                     </a>
                                     asked {{ date }}
                                 </span>
-                                <span *ngIf="topic.user.id === currentUserId" class="dwqa-question-actions">
+                                <span *ngIf="topic.user.is_active && isAdmin" class="block-user"><a href="javascript:void()" title="Block user" (click)="blockUser(topic.user.id)"><i class="fa fa-times-circle"></i></a></span>
+                                <span *ngIf="!topic.user.is_active && isAdmin" class="activate-user"><a href="javascript:void()" title="Activate user" (click)="activateUser(topic.user.id)"><i class="fa fa-check-circle"></i></a></span>
+                                <span *ngIf="topic.user.id === currentUserId || isAdmin || isModerator" class="dwqa-question-actions">
                                     <a class="label label-info" href="javascript:void()" data-toggle="modal" data-target="#editTopicModal">edit</a>
                                     <a class="label label-danger" href="javascript:void()" data-toggle="modal" data-target="#deleteTopicModal">delete</a>
                                 </span>
@@ -42,6 +44,8 @@
                             <div *ngIf="replies.length" class="dwqa-answers-title"><span>{{ replies.length }} Answers</span></div>
                             <div class="dwqa-answers-list">
                                 <div *ngFor="let reply of replies;let index = index;" class="dwqa-answer-item dwqa-best-answer" id="answer-{{ reply.id }}">
+                                    <span *ngIf="reply.user.is_active && isAdmin" class="block-user"><a href="javascript:void()" title="Block user" (click)="blockUser(reply.user.id)"><i class="fa fa-times-circle"></i></a></span>
+                                    <span *ngIf="!reply.user.is_active && isAdmin" class="activate-user"><a href="javascript:void()" title="Activate user" (click)="activateUser(reply.user.id)"><i class="fa fa-check-circle"></i></a></span>
                                     <div class="dwqa-answer-vote">
                                         <span class="dwqa-vote-count">{{countVote[reply.id]}}</span>
                                         <a class="dwqa-vote dwqa-vote-up" href="javascript:void()" (click)="vote_up(reply.id)">Vote Up</a>
@@ -58,7 +62,7 @@
                                             </a>
                                             answered {{ replyDate[reply.id] }}
                                         </span> 
-                                        <span *ngIf="reply.user.id === currentUserId" class="dwqa-answer-actions">
+                                        <span *ngIf="reply.user.id === currentUserId || isAdmin || isModerator" class="dwqa-answer-actions">
                                             <a class="label label-info" href="javascript:void()" (click)="replyFormToggle(reply.id)" data-toggle="modal" data-target="#editReplyModal">edit</a>
                                             <a class="label label-danger" href="javascript:void()" (click)="replyDeleteModal(reply.id)"  data-toggle="modal" data-target="#deleteReplyModal">delete</a>
                                         </span>
@@ -76,7 +80,9 @@
                                                         {{ comment.user.username }}
                                                     </a>
                                                     replied {{commentDate[comment.id]}}
-                                                    <div *ngIf="comment.user.id === currentUserId" class="dwqa-comment-actions">
+                                                    <span *ngIf="comment.user.is_active && isAdmin" class="block-user"><a href="javascript:void()" title="Block user" (click)="blockUser(comment.user.id)"><i class="fa fa-times-circle"></i></a></span>
+                                                    <span *ngIf="!comment.user.is_active && isAdmin" class="activate-user"><a href="javascript:void()" title="Activate user" (click)="activateUser(comment.user.id)"><i class="fa fa-check-circle"></i></a></span>
+                                                    <div *ngIf="comment.user.id === currentUserId || isAdmin || isModerator" class="dwqa-comment-actions">
                                                         <a class="label label-info" href="javascript:void()" (click)="commentModalToggle(comment.id)" data-toggle="modal" data-target="#editCommentModal">edit</a>
                                                         <a class="label label-danger" href="javascript:void()" (click)="commentDeleteModal(comment.id)"  data-toggle="modal" data-target="#deleteCommentModal">delete</a>
                                                     </div>

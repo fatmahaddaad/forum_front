@@ -164,4 +164,14 @@ export class ForumService {
     this.createAuthorizationHeader(headers);
     return this.http.put(this.Url+`setCorrectAnswer/${id}`, reply, {headers});
   }
+  deactivateUser(user, id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.put(this.Url+`deactivateUser/${id}`, user, {headers});
+  }
+  activateUser(user, id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.put(this.Url+`activateUser/${id}`, user, {headers});
+  }
 }

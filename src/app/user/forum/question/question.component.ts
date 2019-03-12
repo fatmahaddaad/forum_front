@@ -27,6 +27,9 @@ export class QuestionComponent implements OnInit {
   commentDate : any[] = [];
   categories: any;
   currentUserId;
+  isAdmin
+  isModerator
+  currentUserRoles: any[] = [];
   updateTopicForm: FormGroup;
   updateReplyForm: FormGroup;
   replyID
@@ -50,6 +53,9 @@ export class QuestionComponent implements OnInit {
     });
     this.forumService.getCurrentUser().subscribe(file => { 
       this.currentUserId = file.json().isLogged.id
+      this.currentUserRoles = file.json().isLogged.roles
+      this.isAdmin = this.currentUserRoles.includes('ROLE_ADMIN')
+      this.isModerator = this.currentUserRoles.includes('ROLE_MODERATOR')
     });
     this.forumService.getCategories().subscribe(file => {
       this.categories = file.json();
@@ -293,6 +299,28 @@ export class QuestionComponent implements OnInit {
       this.ngOnInit();
     }, (err) => {
       this.notifier.notify("error", err.json().message)
+    })
+  }
+  blockUser(id) {
+    const user ={
+      is_active : false
+    }
+    this.forumService.deactivateUser(user, id).subscribe(res => {
+      this.notifier.notify("success", "User is deactivated")
+      this.ngOnInit();
+    }, (err) => {
+      this.notifier.notify("error", err.json().error.message)
+    })
+  }
+  activateUser(id) {
+    const user ={
+      is_active : true
+    }
+    this.forumService.activateUser(user, id).subscribe(res => {
+      this.notifier.notify("success", "User is activated")
+      this.ngOnInit();
+    }, (err) => {
+      this.notifier.notify("error", err.json().error.message)
     })
   }
 }

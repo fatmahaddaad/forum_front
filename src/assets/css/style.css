@@ -2443,6 +2443,34 @@ span.dwqa-answers-actions {
 .dwqa-set-best-answer:hover a:after {
     border-color: #333333;
 }
+.block-user {
+    left: 0px;
+    min-height: 10px;
+    position: absolute;
+    top: 73px;
+    width: 55px;
+    text-align: center;
+    line-height: normal;
+}
+.block-user i{
+    color: #d9534f;
+}
+.activate-user {
+    left: 0px;
+    min-height: 10px;
+    position: absolute;
+    top: 73px;
+    width: 55px;
+    text-align: center;
+    line-height: normal;
+}
+.activate-user i{
+    color: #5cb85c;
+}
+.dwqa-comment-meta .block-user,
+.dwqa-comment-meta .activate-user {
+    position: initial;
+}
 .dwqa-answer-item .dwqa-answer-meta {
     position: absolute;
     left: 0;
