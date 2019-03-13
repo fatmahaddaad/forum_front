@@ -28,8 +28,8 @@
                                     </span>
                                         <span> became a member {{ date[element.user.id] }}</span>
                                         <span class="dwqa-question-category"> • {{ arrayRoles[element.user.id] }}</span>
-                                        <span style="position: initial;display: inline-block;" *ngIf="element.user.is_active" class="block-user"><a href="javascript:void()" title="Block user" (click)="blockUser(element.user.id)"><i class="fa fa-times-circle"></i></a></span>
-                                        <span style="position: initial;display: inline-block;" *ngIf="!element.user.is_active" class="activate-user"><a href="javascript:void()" title="Activate user" (click)="activateUser(element.user.id)"><i class="fa fa-check-circle"></i></a></span>
+                                        <span style="position: initial;display: inline-block;" *ngIf="element.user.is_active && isAdmin" class="block-user"><a href="javascript:void()" title="Block user" (click)="blockUser(element.user.id)"><i class="fa fa-times-circle"></i></a></span>
+                                        <span style="position: initial;display: inline-block;" *ngIf="!element.user.is_active && isAdmin" class="activate-user"><a href="javascript:void()" title="Activate user" (click)="activateUser(element.user.id)"><i class="fa fa-check-circle"></i></a></span>
                                     </div>
                                     <div class="dwqa-question-stats">
                                         <span class="dwqa-views-count"><strong>{{ element.topics }}</strong>topics</span>

@@ -17,6 +17,9 @@ export class UsersComponent implements OnInit {
   date: any[] = []
   roles: any[] = []
   arrayRoles: any[] = []
+  logged
+  isAdmin: boolean
+  isModerator: boolean
   private readonly notifier: NotifierService;
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
@@ -26,6 +29,15 @@ export class UsersComponent implements OnInit {
     public auth: AuthService) { this.notifier = notifierService; }
 
   ngOnInit() {
+    this.forumService.getCurrentUser().subscribe(file => {
+      this.logged = file.json().isLogged
+      if (this.logged.roles.includes('ROLE_ADMIN')) {
+        this.isAdmin = true
+      }
+      if (this.logged.roles.includes('ROLE_MODERATOR')) {
+        this.isModerator = true
+      }
+    })
     this.forumService.getCategories().subscribe(file => {
       this.categories = file.json();
     });

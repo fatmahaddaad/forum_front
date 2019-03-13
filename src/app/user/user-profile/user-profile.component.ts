@@ -16,12 +16,24 @@ export class UserProfileComponent implements OnInit {
   birthdate
   categories
   date : any[] = [];
+  logged
+  isAdmin: boolean
+  isModerator: boolean
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
     private router: Router,
     notifierService: NotifierService) { this.notifier = notifierService; }
 
   ngOnInit() {
+    this.forumService.getCurrentUser().subscribe(file => {
+      this.logged = file.json().isLogged
+      if (this.logged.roles.includes('ROLE_ADMIN')) {
+        this.isAdmin = true
+      }
+      if (this.logged.roles.includes('ROLE_MODERATOR')) {
+        this.isModerator = true
+      }
+    })
     this.forumService.getCategories().subscribe(file => {
       this.categories = file.json();
     });
