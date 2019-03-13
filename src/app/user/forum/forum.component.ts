@@ -14,12 +14,26 @@ export class ForumComponent implements OnInit {
   topics: any;
   date : any[] = [];
   searchInput: string = "";
+  logged
+  isAdmin: boolean
+  isModerator: boolean
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
     private router: Router,
     public auth: AuthService) { }
 
   ngOnInit() {
+    if (this.auth.isAuthenticated([])) {
+      this.forumService.getCurrentUser().subscribe(file => {
+        this.logged = file.json().isLogged
+        if (this.logged.roles.includes('ROLE_ADMIN')) {
+          this.isAdmin = true
+        }
+        if (this.logged.roles.includes('ROLE_MODERATOR')) {
+          this.isModerator = true
+        }
+      })
+    }
     this.forumService.getTopics().subscribe(file => {
       this.topics = file.json();
       this.topics.forEach(topic => {

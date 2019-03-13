@@ -11,7 +11,7 @@
 <!-- Preloader ends -->
 
 <!-- Start Header -->
-<header>
+<header *ngIf="logged">
   <!-- Start Mainmenu -->
   <div class="menu-area navbar-fixed-top ">
       <div class="container">
@@ -51,6 +51,7 @@
                                             <li><a href="javascript:void(0)">Contact<span>Let us contact</span></a></li>
                                             <li *ngIf="!auth.isAuthenticated()" [class.active]="this.router.url == '/user/login'"><a href="/user/login"><span><i class="fa fa-sign-in"></i></span>Login</a></li>
                                             <li *ngIf="!auth.isAuthenticated()" [class.active]="this.router.url == '/user/register'"><a href="/user/register"><span><i class="fa fa-registered"></i></span>Register</a></li>
+                                            <li *ngIf="auth.isAuthenticated() && (isAdmin || isModerator)" [class.active]="this.router.url == '/user/users'"><a href="/user/users"><span><i class="fa fa-users"></i></span>Users</a></li>
                                             <li *ngIf="auth.isAuthenticated()" [class.active]="this.router.url == '/user/profile'"><a href="/user/profile"><span><i class="fa fa-user"></i></span> Profile</a></li>
                                             <li *ngIf="auth.isAuthenticated()"><a href="javascript:void(0)" (click)="onLogout()"><span><i class="fa fa-sign-out"></i></span>Logout</a></li>
                                       </ul>
@@ -82,6 +83,7 @@
                 <li><a href="javascript:void(0)">Contact</a></li>
                 <li *ngIf="!auth.isAuthenticated()" [class.active]="this.router.url == '/user/login'"><a href="/user/login"><span><i class="fa fa-sign-in"></i></span> Login</a></li>
                 <li *ngIf="!auth.isAuthenticated()" [class.active]="this.router.url == '/user/register'"><a href="/user/register"><span><i class="fa fa-registered"></i></span> Register</a></li>
+                <li *ngIf="auth.isAuthenticated() && (isAdmin || isModerator)" [class.active]="this.router.url == '/user/users'"><a href="/user/users"><span><i class="fa fa-users"></i></span>Users</a></li>
                 <li *ngIf="auth.isAuthenticated()" [class.active]="this.router.url == '/user/profile'"><a href="/user/profile"><span><i class="fa fa-user"></i></span> Profile</a></li>
                 <li *ngIf="auth.isAuthenticated()"><a href="javascript:void(0)" (click)="onLogout()"><span><i class="fa fa-sign-out"></i></span> Logout</a></li>
               </ul>
@@ -92,7 +94,7 @@
 </header>
 <!-- End Header -->
 <!-- Start Slider Area -->
-<div class="slider-area">
+<div  *ngIf="logged" class="slider-area">
   <div class="container-fluid">
       <div class="row">
           <div class="slider-wrapper-2">
@@ -112,7 +114,7 @@
 </div>
 <!--End Slider Area -->
 <!-- Start Document Source Area -->
-<section>
+<section *ngIf="logged">
   <div class="document-source-area themeix-ptb">
       <div class="container">
           <div class="row">
@@ -173,7 +175,7 @@
 </section>
 <!-- End Document Source Area -->
 <!-- Start Topics Section Area -->
-<section>
+<section *ngIf="logged">
   <div class="topics-section-area themeix-ptb">
       <div class="container">
           <div class="row">
@@ -269,7 +271,7 @@
 </section>
 <!-- End Topics Section Area -->
 <!-- Start FAQ Section -->
-<section class="faq-section themeix-ptb">
+<section *ngIf="logged" class="faq-section themeix-ptb">
   <div class="container">
       <div class="row">
 
@@ -377,7 +379,7 @@
 </section>
 <!-- End FAQ Section -->
 <!-- Start Parallax section -->
-<div class="parallax-area themeix-ptb">
+<div *ngIf="logged" class="parallax-area themeix-ptb">
   <div class="container">
       <div class="row">
         <div class="col-md-offset-2 col-md-8">
@@ -459,7 +461,7 @@
 </div>
 <!-- End Parallax section -->
 <!-- Testimonials -->
-<section class="testimonials-section themeix-ptb">
+<section *ngIf="logged" class="testimonials-section themeix-ptb">
   <div class="container">
       <div class="row">
           <div class="col-md-offset-3 col-md-6">
@@ -513,7 +515,7 @@
 </section>
 <!-- End Testimonials -->
 <!-- Awards -->
-<div class="awards-section themeix-ptb">
+<div *ngIf="logged" class="awards-section themeix-ptb">
   <div class="container">
       <div class="row">
           <div class="col-md-12">
@@ -531,7 +533,7 @@
 </div>
 <!-- End Awards -->
 <!-- Start Contact Form Area -->
-<div class="contact-section pt-80">
+<div *ngIf="logged" class="contact-section pt-80">
   <div class="container">
       <div class="row">
           <div class="col-md-offset-3 col-md-6">
@@ -585,7 +587,7 @@
 </div>
 <!-- End Contact Form Area -->	
 <!-- Start Footer Area -->
-<footer>
+<footer *ngIf="logged">
   <div class="footer-area themeix-ptb">
       <div class="container">
           <div class="row">
