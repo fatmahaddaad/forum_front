@@ -11,7 +11,7 @@
 <!-- Preloader ends -->
 
 <!-- Start Header -->
-<header *ngIf="logged">
+<header *ngIf="logged || !auth.isAuthenticated()">
   <!-- Start Mainmenu -->
   <div class="menu-area navbar-fixed-top ">
       <div class="container">
@@ -94,7 +94,7 @@
 </header>
 <!-- End Header -->
 <!-- Start Slider Area -->
-<div  *ngIf="logged" class="slider-area">
+<div  *ngIf="logged || !auth.isAuthenticated()" class="slider-area">
   <div class="container-fluid">
       <div class="row">
           <div class="slider-wrapper-2">
@@ -114,7 +114,7 @@
 </div>
 <!--End Slider Area -->
 <!-- Start Document Source Area -->
-<section *ngIf="logged">
+<section *ngIf="logged || !auth.isAuthenticated()">
   <div class="document-source-area themeix-ptb">
       <div class="container">
           <div class="row">
@@ -175,7 +175,7 @@
 </section>
 <!-- End Document Source Area -->
 <!-- Start Topics Section Area -->
-<section *ngIf="logged">
+<section *ngIf="logged || !auth.isAuthenticated()">
   <div class="topics-section-area themeix-ptb">
       <div class="container">
           <div class="row">
@@ -271,7 +271,7 @@
 </section>
 <!-- End Topics Section Area -->
 <!-- Start FAQ Section -->
-<section *ngIf="logged" class="faq-section themeix-ptb">
+<section *ngIf="logged || !auth.isAuthenticated()" class="faq-section themeix-ptb">
   <div class="container">
       <div class="row">
 
@@ -379,7 +379,7 @@
 </section>
 <!-- End FAQ Section -->
 <!-- Start Parallax section -->
-<div *ngIf="logged" class="parallax-area themeix-ptb">
+<div *ngIf="logged || !auth.isAuthenticated()" class="parallax-area themeix-ptb">
   <div class="container">
       <div class="row">
         <div class="col-md-offset-2 col-md-8">
@@ -461,7 +461,7 @@
 </div>
 <!-- End Parallax section -->
 <!-- Testimonials -->
-<section *ngIf="logged" class="testimonials-section themeix-ptb">
+<section *ngIf="logged || !auth.isAuthenticated()" class="testimonials-section themeix-ptb">
   <div class="container">
       <div class="row">
           <div class="col-md-offset-3 col-md-6">
@@ -515,7 +515,7 @@
 </section>
 <!-- End Testimonials -->
 <!-- Awards -->
-<div *ngIf="logged" class="awards-section themeix-ptb">
+<div *ngIf="logged || !auth.isAuthenticated()" class="awards-section themeix-ptb">
   <div class="container">
       <div class="row">
           <div class="col-md-12">
@@ -533,7 +533,7 @@
 </div>
 <!-- End Awards -->
 <!-- Start Contact Form Area -->
-<div *ngIf="logged" class="contact-section pt-80">
+<div *ngIf="logged || !auth.isAuthenticated()" class="contact-section pt-80">
   <div class="container">
       <div class="row">
           <div class="col-md-offset-3 col-md-6">
@@ -587,7 +587,7 @@
 </div>
 <!-- End Contact Form Area -->	
 <!-- Start Footer Area -->
-<footer *ngIf="logged">
+<footer *ngIf="logged || !auth.isAuthenticated()">
   <div class="footer-area themeix-ptb">
       <div class="container">
           <div class="row">

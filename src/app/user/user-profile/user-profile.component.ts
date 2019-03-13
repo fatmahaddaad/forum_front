@@ -19,6 +19,7 @@ export class UserProfileComponent implements OnInit {
   logged
   isAdmin: boolean
   isModerator: boolean
+  isPromoted: boolean
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
     private router: Router,
@@ -41,6 +42,7 @@ export class UserProfileComponent implements OnInit {
     this.forumService.getUser(id).subscribe(file => {
       this.data = file.json()
       console.log(this.data);
+      this.isPromoted = this.data.user.roles.includes('ROLE_MODERATOR')
       this.birthdate = moment(this.data.user.birthdate, "YYYYMMDDTh:mm:ss").format('YYYY-MM-DD')
       file.json().topics.forEach(topic => {
         this.date[topic.id] = moment(topic.date, "YYYYMMDDTh:mm:ss").fromNow()
@@ -49,6 +51,22 @@ export class UserProfileComponent implements OnInit {
     
   }
   promote() {
+    let id = this.route.snapshot.paramMap.get('id');
+    const user = {
+    }
+    this.forumService.promoteUser(id, user).subscribe(res => {
+      this.notifier.notify("success", "User promoted successfully")
+      this.forumService.getUser(id).subscribe(file => {
+        this.data = file.json()
+        this.isPromoted = this.data.user.roles.includes('ROLE_MODERATOR')
+        this.birthdate = moment(this.data.user.birthdate, "YYYYMMDDTh:mm:ss").format('YYYY-MM-DD')
+        file.json().topics.forEach(topic => {
+          this.date[topic.id] = moment(topic.date, "YYYYMMDDTh:mm:ss").fromNow()
+        })
+      })
+    }, (err) => {
+      console.log(err);
+    })
     // todo 
   }
   showTopic(id) {

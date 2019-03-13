@@ -1,5 +1,5 @@
 <!-- Start Header -->
-<header *ngIf="logged">
+<header *ngIf="logged || !auth.isAuthenticated()">
     <!-- Start Mainmenu -->
     <div class="menu-area navbar-fixed-top ">
         <div class="container">
@@ -81,11 +81,11 @@
     <!-- End MObile Menu Area -->
 </header>
 <!-- End Header -->
-<section *ngIf="logged" style="margin-bottom: 250px">
+<section *ngIf="logged || !auth.isAuthenticated()" style="margin-bottom: 250px">
     <router-outlet></router-outlet>
 </section>
 <!-- Start Footer Area -->
-<footer *ngIf="logged">
+<footer *ngIf="logged || !auth.isAuthenticated()">
     <div class="footer-area themeix-ptb">
         <div class="container">
             <div class="row">
