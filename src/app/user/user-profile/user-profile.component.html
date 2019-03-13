@@ -16,6 +16,8 @@
                                             <div class="comment-pic">
                                               <img *ngIf="data.user.image" src="http://127.0.0.1:8000/images/profile/{{data.user.image}}" alt="comment">
                                               <img *ngIf="!data.user.image" src="../../../assets/images/avatar.jpg" alt="comment">
+                                              <span style="position: initial;display: inline-block;width: 120px;" *ngIf="data.user.is_active && isAdmin" class="block-user"><a href="javascript:void()" title="Block user" (click)="blockUser(data.user.id)"><i class="fa fa-times-circle"></i></a></span>
+                                              <span style="position: initial;display: inline-block;width: 120px;" *ngIf="!data.user.is_active && isAdmin" class="activate-user"><a href="javascript:void()" title="Activate user" (click)="activateUser(data.user.id)"><i class="fa fa-check-circle"></i></a></span>
                                             </div>
                                             <div class="comment-text">
                                                 <h1>{{data.user.fullname | uppercase}}</h1>

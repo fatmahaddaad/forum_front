@@ -67,7 +67,28 @@ export class UserProfileComponent implements OnInit {
     }, (err) => {
       console.log(err);
     })
-    // todo 
+  }
+  blockUser(id) {
+    const user ={
+      is_active : false
+    }
+    this.forumService.deactivateUser(user, id).subscribe(res => {
+      this.notifier.notify("success", "User is deactivated")
+      this.ngOnInit();
+    }, (err) => {
+      this.notifier.notify("error", err.json().error.message)
+    })
+  }
+  activateUser(id) {
+    const user ={
+      is_active : true
+    }
+    this.forumService.activateUser(user, id).subscribe(res => {
+      this.notifier.notify("success", "User is activated")
+      this.ngOnInit();
+    }, (err) => {
+      this.notifier.notify("error", err.json().error.message)
+    })
   }
   showTopic(id) {
     this.router.navigate([`/forum/question/${id}`], id);
