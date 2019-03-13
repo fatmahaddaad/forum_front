@@ -65,4 +65,7 @@ export class UsersComponent implements OnInit {
       this.notifier.notify("error", err.json().error.message)
     })
   }
+  show(id, username) {
+    this.router.navigate([`/user/user/${id}/${username}`], id);
+  }
 }

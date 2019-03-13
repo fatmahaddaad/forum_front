@@ -12,7 +12,7 @@
                             <div class="dwqa-questions-list">
                                 <div class="dwqa-question-item" *ngFor="let element of data |paginate: { itemsPerPage: 5, currentPage: p, totalItems: data.length }">
                                     <header class="dwqa-question-title">
-                                        <a href="javascript:void(0)" title="{{ element.user.username }}" (click)="show(element.user.id)">{{ element.user.username }}<span *ngIf="element.user.fullname"> ( {{element.user.fullname}} )</span></a>
+                                        <a href="javascript:void(0)" title="{{ element.user.username }}" (click)="show(element.user.id, element.user.username)">{{ element.user.username }}<span *ngIf="element.user.fullname"> ( {{element.user.fullname}} )</span></a>
                                     </header>
                                     <div class="dwqa-question-meta">
                                     <span style="height: 36px;

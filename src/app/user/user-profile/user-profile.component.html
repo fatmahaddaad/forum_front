@@ -1,0 +1,193 @@
+<div *ngIf="!data && !categories" class="loader"></div>
+<!-- Start Blog Area -->
+<section *ngIf="data && categories" class="blog-area themeix-ptb" style="margin-bottom : -250px">
+    <div class="container">
+        <div class="row">
+            <!-- Start Blog Content -->
+            <div class="col-md-9">
+                <div class="blog-wrapper">
+                    <div class="single-blog-details">
+                        <div class="blog-content-desc">
+                            <!-- Single Comment -->
+                            <div id="comments">
+                                <ul class="comments-list">
+                                    <li>
+                                        <div class="comment">
+                                            <div class="comment-pic">
+                                              <img *ngIf="data.user.image" src="http://127.0.0.1:8000/images/profile/{{data.user.image}}" alt="comment">
+                                              <img *ngIf="!data.user.image" src="../../../assets/images/avatar.jpg" alt="comment">
+                                            </div>
+                                            <div class="comment-text">
+                                                <h1>{{data.user.fullname | uppercase}}</h1>
+                                                <p>{{data.user.bio}}</p>
+                                                <a href="javascript:void()" (click)="promote()" class="comment-reply">Promote</a>
+                                                <ul>
+                                                    <li><span style="font-weight: bold">Birthdate : </span><span>{{birthdate}}</span></li> 
+                                                    <li><span style="font-weight: bold">Company : </span><span>{{data.user.company }}</span></li> 
+                                                    <li><span style="font-weight: bold">Website : </span><span>{{data.user.website }}</span></li>
+                                                    <li><span style="font-weight: bold">Email : </span><span>{{data.user.email}}</span></li> 
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End Single Comment -->
+                            <notifier-container></notifier-container>
+                        </div>
+                    </div>
+                </div>
+                <!-- Start Question -->
+                <div class="questions-wrapper">
+                    <div class="dwqa-container">
+                        <div class="dwqa-questions-archive">
+                            <div class="dwqa-questions-list">
+                                <h3>Topics ({{data.topics.length}})</h3>
+                                <div class="dwqa-question-item" *ngFor="let topic of data.topics |paginate: { itemsPerPage: 5, currentPage: p, totalItems: data.topics.length }">
+                                    <header class="dwqa-question-title">
+                                        <a href="javascript:void(0)" title="{{ topic.subject }}" (click)="showTopic(topic.id)">{{ topic.subject }}</a>
+                                    </header>
+                                    <div class="dwqa-question-meta">
+                                        <div  *ngFor="let statu of topic.status">
+                                            <span *ngIf="statu === 'ANSWERED' || statu === 'RESOLVED' || statu === 'CLOSED'" class="dwqa-status dwqa-status-{{ statu }}"  title="{{ statu }}">{{ statu }}</span>
+                                            <span *ngIf="statu === 'UNANSWERED' || statu === 'UNRESOLVED' || statu === 'OPEN'" class="dwqa-status dwqa-status-"  title=""></span>
+                                        </div>
+                                        <span> asked {{ date[topic.id] }}</span>
+                                        <span class="dwqa-question-category"> • <a href="javascript:void(0)" (click)="showCategory(topic.category_id)" rel="tag">{{ topic.category_name }}</a></span>
+                                    </div>
+                                    <div class="dwqa-question-stats">
+                                        <span class="dwqa-views-count"><strong>{{ topic.views }}</strong>views</span>
+                                        <span class="dwqa-answers-count"><strong>{{ topic.answers }}</strong>answers</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dwqa-questions-footer">
+                                    <pagination-controls  
+                                        (pageChange)="p = $event"
+                                        maxSize="9"
+                                        directionLinks="true"
+                                        autoHide="true"
+                                        responsive="true"
+                                        previousLabel="Previous"
+                                        nextLabel="Next"
+                                        screenReaderPaginationLabel="Pagination"
+                                        screenReaderPageLabel="page"
+                                        screenReaderCurrentLabel="You're on page">
+                                    </pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Question -->
+                <!-- Start Question -->
+                <div class="questions-wrapper">
+                    <div class="dwqa-container">
+                        <div class="dwqa-questions-archive">
+                            <div class="dwqa-questions-list">
+                                <h3>Answers ({{data.replies.length}})</h3>
+                                <div class="dwqa-question-item" *ngFor="let reply of data.replies |paginate: { itemsPerPage: 5, currentPage: p, totalItems: data.replies.length }">
+                                    <header class="dwqa-question-title">
+                                        <a href="javascript:void(0)" title="{{ reply.topic.subject }}" (click)="showTopic(reply.topic.id)">{{ reply.topic.subject }}</a>
+                                    </header>
+                                    <div class="dwqa-question-meta">
+                                        <div  *ngFor="let statu of reply.topic.status">
+                                            <span *ngIf="statu === 'ANSWERED' || statu === 'RESOLVED' || statu === 'CLOSED'" class="dwqa-status dwqa-status-{{ statu }}"  title="{{ statu }}">{{ statu }}</span>
+                                            <span *ngIf="statu === 'UNANSWERED' || statu === 'UNRESOLVED' || statu === 'OPEN'" class="dwqa-status dwqa-status-"  title=""></span>
+                                        </div>
+                                        <span> asked {{ date[reply.topic.id] }}</span>
+                                        <span class="dwqa-question-category"> • <a href="javascript:void(0)" (click)="showCategory(reply.topic.category_id)" rel="tag">{{ reply.topic.category_name }}</a></span>
+                                    </div>
+                                    <div class="dwqa-question-stats">
+                                        <span class="dwqa-views-count"><strong>{{ reply.topic.views }}</strong>views</span>
+                                        <span class="dwqa-answers-count"><strong>{{ reply.topic.answers }}</strong>answers</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dwqa-questions-footer">
+                                    <pagination-controls  
+                                        (pageChange)="p = $event"
+                                        maxSize="9"
+                                        directionLinks="true"
+                                        autoHide="true"
+                                        responsive="true"
+                                        previousLabel="Previous"
+                                        nextLabel="Next"
+                                        screenReaderPaginationLabel="Pagination"
+                                        screenReaderPageLabel="page"
+                                        screenReaderCurrentLabel="You're on page">
+                                    </pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Question -->
+                <!-- Start Question -->
+                <div class="questions-wrapper">
+                    <div class="dwqa-container">
+                        <div class="dwqa-questions-archive">
+                            <div class="dwqa-questions-list">
+                                <h3>Comments ({{data.comments.length}})</h3>
+                                <div class="dwqa-question-item" *ngFor="let comment of data.comments |paginate: { itemsPerPage: 5, currentPage: p, totalItems: data.comments.length }">
+                                    <header class="dwqa-question-title">
+                                        <a href="javascript:void(0)" title="{{ comment.topic.subject }}" (click)="showTopic(comment.topic.id)">{{ comment.topic.subject }}</a>
+                                    </header>
+                                    <div class="dwqa-question-meta">
+                                        <div  *ngFor="let statu of comment.topic.status">
+                                            <span *ngIf="statu === 'ANSWERED' || statu === 'RESOLVED' || statu === 'CLOSED'" class="dwqa-status dwqa-status-{{ statu }}"  title="{{ statu }}">{{ statu }}</span>
+                                            <span *ngIf="statu === 'UNANSWERED' || statu === 'UNRESOLVED' || statu === 'OPEN'" class="dwqa-status dwqa-status-"  title=""></span>
+                                        </div>
+                                        <span> asked {{ date[comment.topic.id] }}</span>
+                                        <span class="dwqa-question-category"> • <a href="javascript:void(0)" (click)="showCategory(comment.topic.category_id)" rel="tag">{{ comment.topic.category_name }}</a></span>
+                                    </div>
+                                    <div class="dwqa-question-stats">
+                                        <span class="dwqa-views-count"><strong>{{ comment.topic.views }}</strong>views</span>
+                                        <span class="dwqa-answers-count"><strong>{{ comment.topic.answers }}</strong>answers</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dwqa-questions-footer">
+                                    <pagination-controls  
+                                        (pageChange)="p = $event"
+                                        maxSize="9"
+                                        directionLinks="true"
+                                        autoHide="true"
+                                        responsive="true"
+                                        previousLabel="Previous"
+                                        nextLabel="Next"
+                                        screenReaderPaginationLabel="Pagination"
+                                        screenReaderPageLabel="page"
+                                        screenReaderCurrentLabel="You're on page">
+                                    </pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Question -->
+            </div>
+            <!-- End Blog Content -->
+            <!-- Start Blog Sidebar -->
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="blog-sidebar">
+                        <div class="col-md-12 col-sm-6">
+                            <aside id="dwqa-categories-2" class="widget widget_categories dwqa_widget dwqa_widget_categories sidebar-list">
+                                <h2 class="widget-title">Topics Categories</h2>
+                                <ul>
+                                  <li *ngFor="let category of categories"><a href="javascript:void()" (click)="showCategory(topic.category.id)">{{ category.name }}</a></li>
+                                </ul>
+                            </aside>
+                            <!-- <aside *ngIf="topics.length !== 0" id="dwqa-categories-3" class="widget widget_categories dwqa_widget dwqa_widget_categories sidebar-list">
+                                <h2 class="widget-title">My Topics</h2>
+                                <ul>
+                                  <li *ngFor="let topic of topics"><a href="javascript:void()" (click)="showTopic(topic.id)">{{ topic.subject }}</a></li>
+                                </ul>
+                            </aside> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Blog Sidebar -->
+        </div>
+    </div>
+</section>
+<!-- End Blog Area -->
