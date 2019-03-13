@@ -17,7 +17,7 @@
                         <div class="dwqa-question-item">
                             <div class="dwqa-question-meta">
                                 <span>
-                                    <a href="#">
+                                    <a href="javascript:void()"  (click)="showUser(topic.user.id, topic.user.username)">
                                         <img class="avatar avatar-48 photo" *ngIf="topic.user.image" style="width: 54px; height: 54px; object-fit: cover;" alt="authors" src="http://127.0.0.1:8000/images/profile/{{ topic.user.image }}" />
                                         <img class="avatar avatar-48 photo" *ngIf="!topic.user.image" style="width: 54px; height: 54px; object-fit: cover;" alt="authors" src="http://127.0.0.1:8000/images/profile/author2.png" />
                                         {{topic.user.username}}
@@ -55,7 +55,7 @@
                                     <span *ngIf="!reply.is_correct && reply.user.id !== currentUserId && topic.user.id === currentUserId" class="dwqa-set-best-answer"><a href="avascript:void()" (click)="setBestAnswer(reply.id)">set best</a></span>
                                     <div class="dwqa-answer-meta">
                                         <span>
-                                            <a href="#">
+                                            <a href="javascript:void()"  (click)="showUser(reply.user.id, reply.user.username)">
                                                 <img *ngIf="reply.user.image" style="width: 54px; height: 54px; object-fit: cover;" alt="authors" src="http://127.0.0.1:8000/images/profile/{{ reply.user.image }}" />
                                                 <img *ngIf="!reply.user.image" style="width: 54px; height: 54px; object-fit: cover;" alt="authors" src="http://127.0.0.1:8000/images/profile/author2.png" />
                                                {{reply.user.username}}
@@ -74,7 +74,7 @@
                                         <div class="dwqa-comments-list">
                                             <div class="dwqa-comment {{ comment.id }}" *ngFor="let comment of reply.comments">
                                                 <div class="dwqa-comment-meta">
-                                                    <a href="#">
+                                                    <a href="javascript:void()" (click)="showUser(comment.user.id, comment.user.username)">
                                                         <img class="avatar avatar-16 photo" *ngIf="comment.user.image" style="width: 12px; height: 12px; object-fit: cover;" alt="authors" src="http://127.0.0.1:8000/images/profile/{{ comment.user.image }}" />
                                                         <img class="avatar avatar-16 photo" *ngIf="!comment.user.image" style="width: 12px; height: 12px; object-fit: cover;" alt="authors" src="http://127.0.0.1:8000/images/profile/author2.png" />
                                                         {{ comment.user.username }}

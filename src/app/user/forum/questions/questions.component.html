@@ -40,7 +40,7 @@
                                             <span *ngIf="statu === 'ANSWERED' || statu === 'RESOLVED' || statu === 'CLOSED'" class="dwqa-status dwqa-status-{{ statu }}"  title="{{ statu }}">{{ statu }}</span>
                                             <span *ngIf="statu === 'UNANSWERED' || statu === 'UNRESOLVED' || statu === 'OPEN'" class="dwqa-status dwqa-status-"  title=""></span>
                                         </div>
-                                        <span><a href="javascript:void(0)">{{ topic.user.username }}</a> asked {{ date[topic.id] }}</span>
+                                        <span><a href="javascript:void(0)" (click)="showUser(topic.user.id, topic.user.username)">{{ topic.user.username }}</a> asked {{ date[topic.id] }}</span>
                                         <span class="dwqa-question-category"> • <a href="javascript:void(0)" (click)="showCategory(topic.category.id)" rel="tag">{{ topic.category.name }}</a></span>
                                     </div>
                                     <div class="dwqa-question-stats">

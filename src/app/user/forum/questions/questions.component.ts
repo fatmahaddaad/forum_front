@@ -14,11 +14,15 @@ export class QuestionsComponent implements OnInit {
   date : any[] = [];
   searchInput: string = "";
   categories: any;
+  currentUserId;
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
     private router: Router,) { }
 
   ngOnInit() {
+    this.forumService.getCurrentUser().subscribe(file => { 
+      this.currentUserId = file.json().isLogged.id
+    });
     this.forumService.getCategories().subscribe(file => {
       this.categories = file.json();
     });
@@ -62,5 +66,12 @@ export class QuestionsComponent implements OnInit {
   }
   showCategory(id) {
     this.router.navigate([`/forum/category/${id}`], id);
+  }
+  showUser(id, username) {
+    if (this.currentUserId == id) {
+      this.router.navigate([`/user/profile`]);
+    } else {
+      this.router.navigate([`/user/user/${id}/${username}`], id);
+    }
   }
 }

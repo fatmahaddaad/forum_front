@@ -24,10 +24,10 @@
                                                 <p>{{data.user.bio}}</p>
                                                 <a *ngIf="isAdmin && !isPromoted" href="javascript:void()" (click)="promote()" class="comment-reply">Promote</a>
                                                 <ul>
-                                                    <li><span style="font-weight: bold">Birthdate : </span><span>{{birthdate}}</span></li> 
-                                                    <li><span style="font-weight: bold">Company : </span><span>{{data.user.company }}</span></li> 
-                                                    <li><span style="font-weight: bold">Website : </span><span>{{data.user.website }}</span></li>
-                                                    <li><span style="font-weight: bold">Email : </span><span>{{data.user.email}}</span></li> 
+                                                    <li *ngIf="isAdmin || isModerator"><span style="font-weight: bold">Birthdate : </span><span>{{birthdate}}</span></li> 
+                                                    <li *ngIf="isAdmin || isModerator"><span style="font-weight: bold">Company : </span><span>{{data.user.company }}</span></li> 
+                                                    <li *ngIf="isAdmin || isModerator"><span style="font-weight: bold">Website : </span><span>{{data.user.website }}</span></li>
+                                                    <li *ngIf="isAdmin || isModerator"><span style="font-weight: bold">Email : </span><span>{{data.user.email}}</span></li> 
                                                 </ul>
                                             </div>
                                         </div>
@@ -124,7 +124,7 @@
                 </div>
                 <!-- End Question -->
                 <!-- Start Question -->
-                <div class="questions-wrapper">
+                <div *ngIf="isAdmin || isModerator" class="questions-wrapper">
                     <div class="dwqa-container">
                         <div class="dwqa-questions-archive">
                             <div class="dwqa-questions-list">

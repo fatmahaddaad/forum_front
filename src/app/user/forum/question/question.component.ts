@@ -323,4 +323,11 @@ export class QuestionComponent implements OnInit {
       this.notifier.notify("error", err.json().error.message)
     })
   }
+  showUser(id, username) {
+    if (this.currentUserId == id) {
+      this.router.navigate([`/user/profile`]);
+    } else {
+      this.router.navigate([`/user/user/${id}/${username}`], id);
+    }
+  }
 }
