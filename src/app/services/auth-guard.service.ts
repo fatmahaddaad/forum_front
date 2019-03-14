@@ -12,7 +12,7 @@ export class AuthGuardService implements CanActivate {
     state: RouterStateSnapshot): boolean {
     const allowedRoles = next.data.allowedRoles;
     if (!this.auth.isAuthenticated(allowedRoles)) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/forum/forbidden']);
       return false;
     }
     return true;

@@ -15,6 +15,7 @@ import { CategoryComponent } from './user/forum/category/category.component';
 import { UsersComponent } from './user/users/users.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { CategoriesComponent } from './user/forum/categories/categories.component';
+import { ForbiddenComponent } from './user/forum/forbidden/forbidden.component';
 
 const routes: Routes = [
   { path: '' , component: HomeComponent}, 
@@ -25,6 +26,7 @@ const routes: Routes = [
       { path: 'questions', component: QuestionsComponent},
       { path: 'category/:id', component: CategoryComponent},
       { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard], data: { allowedRoles: ['ROLE_MODERATOR', 'ROLE_ADMIN']} },
+      { path: 'forbidden', component: ForbiddenComponent},
     ]
   },
   { path: 'user', component: UserComponent,
