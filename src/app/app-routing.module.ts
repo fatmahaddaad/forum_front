@@ -33,7 +33,7 @@ const routes: Routes = [
       { path: 'login' , component: LoginComponent}, 
       { path: 'register', component: RegisterComponent},
       { path: 'users', component: UsersComponent, canActivate: [AuthGuard], data: { allowedRoles: ['ROLE_MODERATOR', 'ROLE_ADMIN']} },
-      { path: 'user/:id/:username', component: UserProfileComponent, canActivate: [AuthGuard], data: { allowedRoles: ['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN']} },
+      { path: 'user/:id/:username', component: UserProfileComponent},
     ]
   },
 ];
