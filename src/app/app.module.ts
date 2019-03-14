@@ -26,6 +26,7 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { CategoryComponent } from './user/forum/category/category.component';
 import { UsersComponent } from './user/users/users.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { CategoriesComponent } from './user/forum/categories/categories.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -49,7 +50,8 @@ export function tokenGetter() {
     ProfileComponent,
     CategoryComponent,
     UsersComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,

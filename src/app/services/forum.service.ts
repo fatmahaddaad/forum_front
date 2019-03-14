@@ -189,4 +189,27 @@ export class ForumService {
     this.createAuthorizationHeader(headers);
     return this.http.put(this.Url+`promoteUser/${id}`, user, {headers})
   }
+  getOneCategory(id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.Url+`category/${id}`, {headers});
+  }
+  addCategory(category) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    const formData: FormData = new FormData();
+    formData.append('name', category.name);
+    formData.append('description', category.description);
+    return this.http.post(this.Url+"addCategory", formData, {headers});
+  }
+  editCategory(id, category) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.put(this.Url+`editCategory/${id}`, category, {headers});
+  }
+  deleteCategory(category) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.Url+`deleteCategory/${category}` ,category, {headers});
+  }
 }
