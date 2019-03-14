@@ -44,7 +44,7 @@
                                             <li [class.active]="this.router.url == '/forum/questions' || this.router.url == '/forum/ask-question'"><a href="javascript:void(0)">Questions<span>Ask Your Question</span></a>
                                                 <ul class="dropdown">
                                                     <li [class.active]="this.router.url == '/forum/questions'"><a href="/forum/questions"> <span><i class="fa fa-question-circle"></i></span>All Questions</a></li>														
-                                                    <li [class.active]="this.router.url == '/forum/ask-question'"><a href="/forum/ask-question"><span><i class="fa  fa-question-circle-o"></i></span>Ask Questions</a></li>
+                                                    <li *ngIf="auth.isAuthenticated()" [class.active]="this.router.url == '/forum/ask-question'"><a href="/forum/ask-question"><span><i class="fa  fa-question-circle-o"></i></span>Ask Questions</a></li>
                                                     </ul>
                                                 </li>
                                             <li><a href="javascript:void(0)">Blog<span>All Blog Posts</span></a></li>
@@ -77,7 +77,7 @@
                 <li [class.active]="this.router.url == '/forum/questions' || this.router.url == '/forum/ask-question'"><a href="javascript:void(0)">Questions</a>
                   <ul>
                     <li [class.active]="this.router.url == '/forum/questions'"><a href="/forum/questions"> <span><i class="fa fa-question-circle"></i></span> All Questions</a></li>														
-                    <li [class.active]="this.router.url == '/forum/ask-question'"><a href="/forum/ask-question"><span><i class="fa  fa-question-circle-o"></i></span> Ask Questions</a></li>
+                    <li *ngIf="auth.isAuthenticated()" [class.active]="this.router.url == '/forum/ask-question'"><a href="/forum/ask-question"><span><i class="fa  fa-question-circle-o"></i></span> Ask Questions</a></li>
                     </ul>
                 </li>
                 <li><a href="javascript:void(0)">Blog</a></li>
@@ -104,10 +104,10 @@
               <div class="slider-fixed-text">
                   <h1>All in One Support Portal</h1>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, incidunt, quis! Voluptatem repellat, modi sunt odio. Eum dignissimos cum odio, sed impedit! Omnis harum suscipit voluptatem rerum architecto nemo atque.</p>
-                    <div class="slider-buttons">
+                    <!-- <div class="slider-buttons">
                         <a href="javascript:void(0)" class="themeix-btn white-bg">Latests Updates</a>
                         <a href="/ask-question/" class="themeix-btn primary-bg">Ask Questions</a>
-                    </div>
+                    </div> -->
               </div>
              </div>
           </div>

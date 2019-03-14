@@ -32,7 +32,7 @@
                                             <li [class.active]="this.router.url == '/forum/questions' || this.router.url == '/forum/ask-question'"><a href="javascript:void(0)">Questions<span>Ask Your Question</span></a>
                                                 <ul class="dropdown">
                                                     <li [class.active]="this.router.url == '/forum/questions'"><a href="/forum/questions"> <span><i class="fa fa-question-circle"></i></span>All Questions</a></li>														
-                                                    <li [class.active]="this.router.url == '/forum/ask-question'"><a href="/forum/ask-question"><span><i class="fa  fa-question-circle-o"></i></span>Ask Questions</a></li>
+                                                    <li *ngIf="auth.isAuthenticated()" [class.active]="this.router.url == '/forum/ask-question'"><a href="/forum/ask-question"><span><i class="fa  fa-question-circle-o"></i></span>Ask Questions</a></li>
                                                     </ul>
                                                 </li>
                                             <li><a href="javascript:void(0)">Blog<span>All Blog Posts</span></a></li>
@@ -65,7 +65,7 @@
                     <li [class.active]="this.router.url == '/forum/questions' || this.router.url == '/forum/ask-question'"><a href="javascript:void(0)">Questions</a>
                         <ul>
                             <li [class.active]="this.router.url == '/forum/questions'"><a href="/forum/questions"> <span><i class="fa fa-question-circle"></i></span> All Questions</a></li>														
-                            <li [class.active]="this.router.url == '/forum/ask-question'"><a href="/forum/ask-question"><span><i class="fa  fa-question-circle-o"></i></span> Ask Questions</a></li>
+                            <li *ngIf="auth.isAuthenticated()" [class.active]="this.router.url == '/forum/ask-question'"><a href="/forum/ask-question"><span><i class="fa  fa-question-circle-o"></i></span> Ask Questions</a></li>
                             </ul>
                         </li>
                     <li><a href="javascript:void(0)">Blog</a></li>
