@@ -48,9 +48,10 @@
                                                     </ul>
                                                 </li>
                                             <li><a href="javascript:void(0)">Blog<span>All Blog Posts</span></a></li>
-                                            <li><a href="javascript:void(0)">Contact<span>Let us contact</span></a></li>
+                                            <li *ngIf="!isAdmin && !isModerator"><a href="javascript:void(0)">Contact<span>Let us contact</span></a></li>
                                             <li *ngIf="!auth.isAuthenticated()" [class.active]="this.router.url == '/user/login'"><a href="/user/login"><span><i class="fa fa-sign-in"></i></span>Login</a></li>
                                             <li *ngIf="!auth.isAuthenticated()" [class.active]="this.router.url == '/user/register'"><a href="/user/register"><span><i class="fa fa-registered"></i></span>Register</a></li>
+                                            <li *ngIf="auth.isAuthenticated() && (isAdmin || isModerator)" [class.active]="this.router.url == '/forum/categories'"><a href="/forum/categories">Categories<span>Manage categories</span></a></li>
                                             <li *ngIf="auth.isAuthenticated() && (isAdmin || isModerator)" [class.active]="this.router.url == '/user/users'"><a href="/user/users"><span><i class="fa fa-users"></i></span>Users</a></li>
                                             <li *ngIf="auth.isAuthenticated()" [class.active]="this.router.url == '/user/profile'"><a href="/user/profile"><span><i class="fa fa-user"></i></span> Profile</a></li>
                                             <li *ngIf="auth.isAuthenticated()"><a href="javascript:void(0)" (click)="onLogout()"><span><i class="fa fa-sign-out"></i></span>Logout</a></li>
@@ -80,9 +81,10 @@
                     </ul>
                 </li>
                 <li><a href="javascript:void(0)">Blog</a></li>
-                <li><a href="javascript:void(0)">Contact</a></li>
+                <li *ngIf="!isAdmin && !isModerator"><a href="javascript:void(0)">Contact</a></li>
                 <li *ngIf="!auth.isAuthenticated()" [class.active]="this.router.url == '/user/login'"><a href="/user/login"><span><i class="fa fa-sign-in"></i></span> Login</a></li>
                 <li *ngIf="!auth.isAuthenticated()" [class.active]="this.router.url == '/user/register'"><a href="/user/register"><span><i class="fa fa-registered"></i></span> Register</a></li>
+                <li *ngIf="auth.isAuthenticated() && (isAdmin || isModerator)" [class.active]="this.router.url == '/forum/categories'"><a href="/forum/categories">Categories</a></li>
                 <li *ngIf="auth.isAuthenticated() && (isAdmin || isModerator)" [class.active]="this.router.url == '/user/users'"><a href="/user/users"><span><i class="fa fa-users"></i></span>Users</a></li>
                 <li *ngIf="auth.isAuthenticated()" [class.active]="this.router.url == '/user/profile'"><a href="/user/profile"><span><i class="fa fa-user"></i></span> Profile</a></li>
                 <li *ngIf="auth.isAuthenticated()"><a href="javascript:void(0)" (click)="onLogout()"><span><i class="fa fa-sign-out"></i></span> Logout</a></li>
