@@ -35,6 +35,8 @@ export class QuestionComponent implements OnInit {
   replyID
   updateCommentForm: FormGroup;
   commentID
+  isResolved
+  isClosed
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
     private router: Router,
@@ -63,6 +65,10 @@ export class QuestionComponent implements OnInit {
     let id = this.route.snapshot.paramMap.get('id');
     this.forumService.getRepliesByTopic(id).subscribe(file => {
       this.topic = file.json().topic;
+      this.isResolved = this.topic.status.includes('RESOLVED')
+      this.isClosed = this.topic.status.includes('CLOSED')
+      console.log(this.topic.status);
+      
       this.updateTopicForm = new FormGroup({
         subject: new FormControl(this.topic.subject, [Validators.required]),
         content: new FormControl(this.topic.content, [Validators.required]),
@@ -329,5 +335,27 @@ export class QuestionComponent implements OnInit {
     } else {
       this.router.navigate([`/user/user/${id}/${username}`], id);
     }
+  }
+  setClosedTopic() {
+    let id = this.route.snapshot.paramMap.get('id');
+    const topic = {
+    }
+    this.forumService.setClosedTopic(id, topic).subscribe(res => {
+      this.notifier.notify("success", "Topic closed successfully")
+      this.ngOnInit();
+    }, (err) => {
+      console.log(err);
+    })
+  }
+  setResolvedTopic() {
+    let id = this.route.snapshot.paramMap.get('id');
+    const topic = {
+    }
+    this.forumService.setResolvedTopic(id, topic).subscribe(res => {
+      this.notifier.notify("success", "Topic resolved successfully")
+      this.ngOnInit();
+    }, (err) => {
+      console.log(err);
+    })
   }
 }

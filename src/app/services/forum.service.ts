@@ -212,4 +212,14 @@ export class ForumService {
     this.createAuthorizationHeader(headers);
     return this.http.post(this.Url+`deleteCategory/${category}` ,category, {headers});
   }
+  setClosedTopic(id, topic) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.put(this.Url+`setTopicClose/${id}`, topic, {headers})
+  }
+  setResolvedTopic(id, topic) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.put(this.Url+`setResolved/${id}`, topic, {headers})
+  }
 }

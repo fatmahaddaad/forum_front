@@ -12,6 +12,15 @@
                             <a href="javascript:void()" (click)="showCategory(topic.category.id)">Category : {{ topic.category.name }}</a>
                             <span class="dwqa-sep"> › </span>
                             <span class="dwqa-current">{{ topic.subject }}</span>
+                            <span *ngIf="topic.user.id === currentUserId || isAdmin || isModerator" class="dwqa-question-actions">
+                                <a *ngIf="!isClosed" class="label label-default" href="javascript:void()" (click)="setClosedTopic()">Close topic</a>
+                                <a *ngIf="!isResolved" class="label label-success" href="javascript:void()" (click)="setResolvedTopic()">Set Resolved</a>
+                            </span>
+                            <span class="dwqa-question-actions">
+                                <span *ngIf="isClosed" class="label label-default" style="margin-right: 5px;">Closed</span>
+                                <span *ngIf="isResolved" class="label label-success">Resolved</span>
+                                <span *ngIf="!isResolved" class="label label-danger">Unresolved</span>
+                            </span>
                         </div>
                         <!-- Start Question Item -->
                         <div class="dwqa-question-item">
