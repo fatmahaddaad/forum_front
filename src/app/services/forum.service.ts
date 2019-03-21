@@ -222,4 +222,9 @@ export class ForumService {
     this.createAuthorizationHeader(headers);
     return this.http.put(this.Url+`setResolved/${id}`, topic, {headers})
   }
+  passwordChange(id, user) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.put(this.Url+`passwordChange/${id}`, user, {headers})
+  }
 }

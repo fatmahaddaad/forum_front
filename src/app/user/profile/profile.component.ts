@@ -27,6 +27,9 @@ export class ProfileComponent implements OnInit {
   imgURL: any;
   fileToUpload: File = null;
   topics: any;
+  oldPassword
+  newPassword
+  confirmNewPassword
   public message: string;
   private readonly notifier: NotifierService;
   constructor(private forumService: ForumService,
@@ -118,5 +121,22 @@ export class ProfileComponent implements OnInit {
   }
   show(id) {
     this.router.navigate([`/forum/question/${id}`], id);
+  }
+  changePassword(id) {
+    
+    const user = {
+      new_password_confirm: this.confirmNewPassword,
+      new_password: this.newPassword,
+      old_password: this.oldPassword
+    }
+    if (user.old_password && user.new_password && user.new_password_confirm) {
+      this.forumService.passwordChange(id, user).subscribe(res => {
+        this.notifier.notify("success","Password Changed successfully")
+      }, (err) => {
+        this.notifier.notify("error", err.json().message)
+      })
+    } else {
+      this.notifier.notify("error", "All fields are required")
+    }
   }
 }

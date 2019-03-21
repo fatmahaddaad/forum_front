@@ -3550,7 +3550,7 @@ Ask Question Page
 form.dwqa-content-edit-form label, form.dwqa-content-edit-form input[type="text"], form.dwqa-content-edit-form textarea {
     width: 100%;
 }
-form.dwqa-content-edit-form input[type="text"], form.dwqa-content-edit-form textarea, form.dwqa-content-edit-form input[type="text"], form.dwqa-content-edit-form select, form.dwqa-content-edit-form input[type="date"], form.dwqa-content-edit-form input[type="email"] {
+form.dwqa-content-edit-form input[type="text"], form.dwqa-content-edit-form textarea, form.dwqa-content-edit-form input[type="text"], form.dwqa-content-edit-form select, form.dwqa-content-edit-form input[type="date"], form.dwqa-content-edit-form input[type="email"], form.dwqa-content-edit-form input[type="password"] {
     margin-bottom: 20px;
     width: 100%;
     padding: 10px;
